@@ -170,11 +170,11 @@ class Buku extends Component
     public function render()
     {
         if ($this->search) {
-            $buku = ModelsBuku::latest()->where('judul', 'like', '%'. $this->search .'%')->paginate(5);
+            $buku = ModelsBuku::latest()->where('judul', 'like', '%' . $this->search . '%')->paginate(5);
         } else {
             $buku = ModelsBuku::latest()->paginate(5);
         }
-        
+
         return view('livewire.petugas.buku', compact('buku'));
     }
 

@@ -1,28 +1,32 @@
-<nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
+<nav class="navbar navbar-expand-md navbar-dark bg-primary shadow">
     <div class="container">
         <a class="navbar-brand" href="{{ url('/') }}">
             {{ config('app.name', 'Laravel') }}
         </a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
             <span class="navbar-toggler-icon"></span>
         </button>
 
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <!-- Left Side Of Navbar -->
             <ul class="navbar-nav mr-auto">
-                 <li class="nav-item dropdown">
-                        <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                            Kategori
-                        </a>
+                <li class="nav-item dropdown">
+                    <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
+                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                        Kategori
+                    </a>
 
-                        <div class="dropdown-menu dropdown-menu-left" aria-labelledby="navbarDropdown" style="cursor: pointer">
-                            <a class="dropdown-item" wire:click="semuaKategori">Semua Kategori</a>
-                            <div class="dropdown-divider"></div>
-                            @foreach ($kategori as $item)
-                                <a class="dropdown-item" wire:click="pilihKategori({{$item->id}})">{{$item->nama}}</a>
-                            @endforeach
-                        </div>
-                    </li>
+                    <div class="dropdown-menu dropdown-menu-left" aria-labelledby="navbarDropdown"
+                        style="cursor: pointer">
+                        <a class="dropdown-item" wire:click="semuaKategori">Semua Kategori</a>
+                        <div class="dropdown-divider"></div>
+                        @foreach ($kategori as $item)
+                            <a class="dropdown-item"
+                                wire:click="pilihKategori({{ $item->id }})">{{ $item->nama }}</a>
+                        @endforeach
+                    </div>
+                </li>
             </ul>
 
             <!-- Right Side Of Navbar -->
@@ -41,17 +45,22 @@
                         </li>
                     @endif
                 @else
-                    @if ($count > 0)
+                    {{-- @if ($count > 0)
                         <li class="nav-item">
-                            <a class="nav-link" href="/keranjang">Keranjang <span class="badge badge-primary">{{$count}}</span></a>
+                            <a class="nav-link" href="/keranjang">Keranjang <span
+                                    class="badge badge-primary">{{ $count }}</span></a>
                         </li>
-                    @endif
+                    @endif --}}
                     <li class="nav-item dropdown">
-                        <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                        <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
+                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                             {{ Auth::user()->name }}
                         </a>
 
                         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                            @role('admin|petugas')
+                                <a class="dropdown-item" href="{{ url('dashboard') }}">Dashboard</a>
+                            @endrole
                             <a class="dropdown-item" href="{{ route('logout') }}"
                                 onclick="event.preventDefault();
                                                 document.getElementById('logout-form').submit();">

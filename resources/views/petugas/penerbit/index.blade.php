@@ -2,6 +2,7 @@
 @section('title', 'Penerbit')
 @section('active-penerbit', 'active')
 @section('active-data-master', 'active')
+@section('menu-open-data-master', 'menu-open')
 
 @section('content')
     <livewire:petugas.penerbit></livewire:petugas.penerbit>
