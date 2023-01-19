@@ -2,21 +2,20 @@
     <div class="col-12">
 
         @include('admin-lte/flash')
-
         @include('petugas/buku/create')
         @include('petugas/buku/edit')
         @include('petugas/buku/delete')
         @include('petugas/buku/show')
 
-        <div class="card">
+        <div class="card card-primary card-outline">
             <div class="card-header">
-                <span wire:click="create" class="btn btn-sm btn-primary">Tambah</span>
-
-                <div class="card-tools">
-                    <div class="input-group input-group-sm" style="width: 150px;">
+                <a class="btn btn-primary" wire:click="create">
+                    <i class="fa fa-plus"></i>&nbsp; Tambah
+                </a>
+                <div class="card-tools mt-1">
+                    <div class="input-group">
                         <input wire:model="search" type="text" name="table_search" class="form-control float-right"
                             placeholder="Search">
-
                         <div class="input-group-append">
                             <button type="submit" class="btn btn-default">
                                 <i class="fas fa-search"></i>
@@ -25,11 +24,11 @@
                     </div>
                 </div>
             </div>
-            <!-- /.card-header -->
+
             @if ($buku->isNotEmpty())
-                <div class="card-body table-responsive p-0">
-                    <table class="table table-hover text-nowrap">
-                        <thead>
+                <div class="card-body">
+                    <table id="example2" class="table table-bordered table-hover table-sm">
+                        <thead class="thead-light text-center">
                             <tr>
                                 <th width="10%">No</th>
                                 <th>Sampul</th>
@@ -42,21 +41,19 @@
                         <tbody>
                             @foreach ($buku as $item)
                                 <tr>
-                                    <td>{{ $loop->iteration }}</td>
+                                    <td class="align-middle text-center">{{ $loop->iteration }}</td>
                                     <td><img src="/storage/{{ $item->sampul }}" alt="{{ $item->judul }}" width="60"
                                             height="80"></td>
-                                    <td>{{ $item->judul }}</td>
-                                    <td>{{ $item->penulis }}</td>
-                                    <td>{{ $item->kategori->nama }}</td>
-                                    <td>
-                                        <div class="btn-group">
-                                            <span wire:click="show({{ $item->id }})"
-                                                class="btn btn-sm btn-success mr-2">Lihat</span>
-                                            <span wire:click="edit({{ $item->id }})"
-                                                class="btn btn-sm btn-primary mr-2">Edit</span>
-                                            <span wire:click="delete({{ $item->id }})"
-                                                class="btn btn-sm btn-danger">Hapus</span>
-                                        </div>
+                                    <td class="align-middle">{{ $item->judul }}</td>
+                                    <td class="align-middle">{{ $item->penulis }}</td>
+                                    <td class="align-middle">{{ $item->kategori->nama }}</td>
+                                    <td class="align-middle text-center">
+                                        <a class="btn btn-success" wire:click="show({{ $item->id }})"
+                                            title="Lihat"><i class="fa fa-search"></i></a>
+                                        <a class="btn btn-warning" wire:click="edit({{ $item->id }})"
+                                            title="Edit"><i class="fa fa-edit"></i></a>
+                                        <a class="btn btn-danger" wire:click="delete({{ $item->id }})"
+                                            title="Hapus"><i class="fa fa-trash"></i></a>
                                     </td>
                                 </tr>
                             @endforeach

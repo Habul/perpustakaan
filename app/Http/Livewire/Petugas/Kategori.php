@@ -103,11 +103,11 @@ class Kategori extends Component
     public function render()
     {
         if ($this->search) {
-            $kategori = ModelsKategori::latest()->where('nama', 'like', '%'. $this->search .'%')->paginate(5);
+            $kategori = ModelsKategori::latest()->where('nama', 'like', '%' . $this->search . '%')->paginate(5);
         } else {
             $kategori = ModelsKategori::latest()->paginate(5);
         }
-        
+
         return view('livewire.petugas.kategori', [
             'kategori' => $kategori
         ]);

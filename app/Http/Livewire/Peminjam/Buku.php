@@ -45,10 +45,10 @@ class Buku extends Component
     {
         // user harus login
         if (auth()->user()) {
-            
+
             // role peminjam
             if (auth()->user()->hasRole('peminjam')) {
-               
+
                 $peminjaman_lama = DB::table('peminjaman')
                     ->join('detail_peminjaman', 'peminjaman.id', '=', 'detail_peminjaman.peminjaman_id')
                     ->where('peminjam_id', auth()->user()->id)
@@ -90,20 +90,15 @@ class Buku extends Component
                             $this->emit('tambahKeranjang');
                             session()->flash('sukses', 'Buku berhasil ditambahkan ke dalam keranjang');
                         }
-
                     }
-
                 }
-
             } else {
                 session()->flash('gagal', 'Role user anda bukan peminjam');
             }
-
         } else {
             session()->flash('gagal', 'Anda harus login terlebih dahulu');
             redirect('/login');
         }
-        
     }
 
     public function updatingSearch()
@@ -115,23 +110,23 @@ class Buku extends Component
     {
         if ($this->pilih_kategori) {
             if ($this->search) {
-                $buku = ModelsBuku::latest()->where('judul', 'like', '%'. $this->search .'%')->where('kategori_id', $this->kategori_id)->paginate(12);
+                $buku = ModelsBuku::latest()->where('judul', 'like', '%' . $this->search . '%')->where('kategori_id', $this->kategori_id)->paginate(12);
             } else {
                 $buku = ModelsBuku::latest()->where('kategori_id', $this->kategori_id)->paginate(12);
             }
             $title = Kategori::find($this->kategori_id)->nama;
-        }elseif ($this->detail_buku) {
+        } elseif ($this->detail_buku) {
             $buku = ModelsBuku::find($this->buku_id);
             $title = 'Detail Buku';
         } else {
             if ($this->search) {
-                $buku = ModelsBuku::latest()->where('judul', 'like', '%'. $this->search .'%')->paginate(12);
+                $buku = ModelsBuku::latest()->where('judul', 'like', '%' . $this->search . '%')->paginate(12);
             } else {
                 $buku = ModelsBuku::latest()->paginate(12);
             }
             $title = 'Semua Buku';
         }
-        
+
         return view('livewire.peminjam.buku', compact('buku', 'title'));
     }
 
