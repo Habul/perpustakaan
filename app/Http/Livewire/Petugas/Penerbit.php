@@ -88,11 +88,11 @@ class Penerbit extends Component
     public function render()
     {
         if ($this->search) {
-            $penerbit = ModelsPenerbit::latest()->where('nama', 'like', '%'. $this->search .'%')->paginate(5);
+            $penerbit = ModelsPenerbit::latest()->where('nama', 'like', '%' . $this->search . '%')->paginate(10);
         } else {
-            $penerbit = ModelsPenerbit::latest()->paginate(5);
+            $penerbit = ModelsPenerbit::latest()->paginate(10);
         }
-        
+
         return view('livewire.petugas.penerbit', [
             'penerbit' => $penerbit
         ]);

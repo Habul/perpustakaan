@@ -29,18 +29,18 @@ class Rak extends Component
     public function store()
     {
         $rak_pilihan = ModelsRak::select('baris')->where('rak', $this->rak)->get()->implode('baris', ',');
-       
+
         $this->validate([
             'rak' => 'required|numeric|min:1',
             'baris' => 'required|numeric|min:1|not_in:' . $rak_pilihan,
             'kategori_id' => 'required|numeric|min:1',
         ]);
-        
+
         ModelsRak::create([
             'rak' => $this->rak,
             'baris' => $this->baris,
             'kategori_id' => $this->kategori_id,
-            'slug' => $this->rak .'-' .$this->baris
+            'slug' => $this->rak . '-' . $this->baris
         ]);
 
         session()->flash('sukses', 'Data berhasil ditambahkan.');
@@ -69,18 +69,19 @@ class Rak extends Component
         } else {
             $rak_baru = ModelsRak::select('baris')->where('rak', $this->rak)->get()->implode('baris', ',');
         }
-        
+
         $this->validate([
             'rak' => 'required|numeric|min:1',
             'baris' => 'required|numeric|min:1|not_in:' . $rak_baru,
             'kategori_id' => 'required|numeric|min:1',
         ]);
 
-        $rak->update(['rak' => $this->rak,
+        $rak->update([
+            'rak' => $this->rak,
             'baris' => $this->baris,
             'kategori_id' => $this->kategori_id,
             'slug' => $this->rak . '-' . $this->baris
-    ]);
+        ]);
 
         session()->flash('sukses', 'Data berhasil diubah.');
 
@@ -116,12 +117,12 @@ class Rak extends Component
     public function render()
     {
         if ($this->search) {
-            $raks = ModelsRak::latest()->where('rak', $this->search)->paginate(5);
+            $raks = ModelsRak::latest()->where('rak', $this->search)->paginate(10);
         } else {
-            $raks = ModelsRak::latest()->paginate(5);
+            $raks = ModelsRak::latest()->paginate(10);
         }
         $count = ModelsRak::select('rak')->distinct()->get();
-        
+
         return view('livewire.petugas.rak', compact('raks', 'count'));
     }
 

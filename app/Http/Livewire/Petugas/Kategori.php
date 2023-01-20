@@ -105,7 +105,7 @@ class Kategori extends Component
         if ($this->search) {
             $kategori = ModelsKategori::latest()->where('nama', 'like', '%' . $this->search . '%')->paginate(5);
         } else {
-            $kategori = ModelsKategori::latest()->paginate(5);
+            $kategori = ModelsKategori::latest()->paginate(10);
         }
 
         return view('livewire.petugas.kategori', [

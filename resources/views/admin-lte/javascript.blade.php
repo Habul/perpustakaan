@@ -39,4 +39,17 @@
             "responsive": true,
         });
     });
+
+    function gethclock() {
+        const d = new Date();
+        weekdayNames = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+        monthNames = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+        var dateString = d.getDate() + ' ' + monthNames[d.getMonth()] + ' ' + d.getFullYear() + ' - ' +
+            ('00' + d.getHours()).slice(-2) + ':' + ('00' + d.getMinutes()).slice(-2) + ':' + ('00' + d.getSeconds())
+            .slice(-
+                2);
+        document.getElementById('hclock').innerHTML = dateString;
+        setTimeout(gethclock, 1000);
+    }
+    gethclock();
 </script>

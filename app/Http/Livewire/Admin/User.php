@@ -6,6 +6,7 @@ use App\Models\User as ModelsUser;
 use Livewire\Component;
 use Livewire\WithPagination;
 use Illuminate\Validation\Rules\Password;
+use App\Models\peminjaman;
 
 class User extends Component
 {
@@ -13,7 +14,7 @@ class User extends Component
     protected $paginationTheme = 'bootstrap';
 
     public $admin, $petugas, $peminjam, $search;
-    public $create, $name, $email, $password, $password_confirmation;
+    public $create, $name, $email, $password, $password_confirmation, $user_id, $edit, $delete;
 
     protected $validationAttributes = [
         'name' => 'nama',
@@ -35,13 +36,13 @@ class User extends Component
         $this->format();
         $this->admin = true;
     }
-  
+
     public function petugas()
     {
         $this->format();
         $this->petugas = true;
     }
-  
+
     public function peminjam()
     {
         $this->format();
@@ -56,7 +57,7 @@ class User extends Component
     public function store()
     {
         $this->validate();
-        
+
         $user = ModelsUser::create([
             'name' => $this->name,
             'email' => $this->email,
@@ -65,13 +66,65 @@ class User extends Component
 
         if ($this->admin) {
             $user->assignRole('admin');
-        }elseif ($this->petugas) {
+        } elseif ($this->petugas) {
             $user->assignRole('petugas');
         } else {
             $user->assignRole('peminjam');
         }
 
         session()->flash('sukses', 'Data berhasil ditambahkan.');
+        $this->format();
+    }
+
+    public function edit(ModelsUser $user)
+    {
+        $this->format();
+
+        $this->edit = true;
+        $this->user_id = $user->id;
+        $this->name = $user->name;
+        $this->email = $user->email;
+        // $this->password = $user->password;
+    }
+
+    public function update(ModelsUser $user)
+    {
+        $validasi = [
+            'name' => 'required|max:255',
+            'email' => 'required|email:dns|unique:users',
+            // 'password' => 'required|min:5|max:255',
+        ];
+
+        $this->validate($validasi);
+
+        $user->update([
+            'name' => $this->name,
+            'email' => $this->email,
+            'password' => bcrypt($this->password)
+        ]);
+
+        session()->flash('sukses', 'Data berhasil diubah');
+        $this->format();
+    }
+
+    public function delete(ModelsUser $user)
+    {
+        $this->delete = true;
+        $this->user_id = $user->id;
+    }
+
+    public function destroy(ModelsUser $user)
+    {
+        $user = Peminjaman::where('peminjam_id', $user->id)->get();
+        foreach ($user as $key => $value) {
+            $value->update([
+                'peminjam_id' => 1
+            ]);
+        }
+        $user->delete();
+
+        session()->flash('sukses', 'Data berhasil dihapus.');
+
         $this->format();
     }
 
@@ -84,26 +137,26 @@ class User extends Component
     {
         if ($this->search) {
             if ($this->admin) {
-                $user = ModelsUser::role('admin')->where('name', 'like', '%'. $this->search .'%')->paginate(5);
+                $user = ModelsUser::role('admin')->where('name', 'like', '%' . $this->search . '%')->paginate(5);
             } elseif ($this->petugas) {
-                $user = ModelsUser::role('petugas')->where('name', 'like', '%'. $this->search .'%')->paginate(5);
+                $user = ModelsUser::role('petugas')->where('name', 'like', '%' . $this->search . '%')->paginate(5);
             } elseif ($this->peminjam) {
-                $user = ModelsUser::role('peminjam')->where('name', 'like', '%'. $this->search .'%')->paginate(5);
+                $user = ModelsUser::role('peminjam')->where('name', 'like', '%' . $this->search . '%')->paginate(5);
             } else {
                 $user = ModelsUser::where('name', 'like', '%' . $this->search . '%')->paginate(5);
             }
         } else {
             if ($this->admin) {
-                $user = ModelsUser::role('admin')->paginate(5);
+                $user = ModelsUser::role('admin')->paginate(10);
             } elseif ($this->petugas) {
-                $user = ModelsUser::role('petugas')->paginate(5);
+                $user = ModelsUser::role('petugas')->paginate(10);
             } elseif ($this->peminjam) {
-                $user = ModelsUser::role('peminjam')->paginate(5);
+                $user = ModelsUser::role('peminjam')->paginate(10);
             } else {
-                $user = ModelsUser::paginate(5);
+                $user = ModelsUser::paginate(10);
             }
         }
-        
+
         return view('livewire.admin.user', compact('user'));
     }
 
@@ -113,6 +166,8 @@ class User extends Component
         $this->petugas = false;
         $this->peminjam = false;
         unset($this->create);
+        unset($this->edit);
+        unset($this->delete);
         unset($this->name);
         unset($this->email);
         unset($this->password);

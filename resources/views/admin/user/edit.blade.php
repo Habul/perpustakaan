@@ -1,9 +1,9 @@
- @if ($create)
+ @if ($edit)
      <div class="modal fade show" id="modal-default" style="display: block; padding-right: 17px;">
          <div class="modal-dialog modal-dialog-centered">
              <div class="modal-content bg-light color-palette">
                  <div class="modal-header">
-                     <h4 class="modal-title">Tambah User</h4>
+                     <h4 class="modal-title">Edit User</h4>
                      <span wire:click="format" type="button" class="close" data-dismiss="modal" aria-label="Close">
                          <span aria-hidden="true">&times;</span>
                      </span>
@@ -26,6 +26,7 @@
                      <div class="form-group">
                          <label for="password">Password</label>
                          <input wire:model="password" type="password" class="form-control" id="password">
+                         <small> jika tidak ingin mengubah password</small>
                          @error('password')
                              <small class="text-danger">{{ $message }}</small>
                          @enderror
@@ -42,8 +43,8 @@
                  <div class="modal-footer justify-content-between">
                      <span wire:click="format" type="button" class="btn btn-default" data-dismiss="modal">
                          <i class="fas fa-times-circle"></i> Batal</span>
-                     <span type="button" wire:click="store" class="btn btn-success">
-                         <i class="fas fa-check-circle"></i> Simpan</span>
+                     <span type="button" wire:click="update({{ $user_id }})" class="btn btn-success">
+                         <i class="fas fa-edit"></i> Update</span>
                  </div>
              </div>
          </div>

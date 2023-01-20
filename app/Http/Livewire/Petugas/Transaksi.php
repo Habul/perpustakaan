@@ -86,23 +86,23 @@ class Transaksi extends Component
     {
         if ($this->search) {
             if ($this->belum_dipinjam) {
-                $transaksi = Peminjaman::latest()->where('kode_pinjam', 'like', '%' . $this->search . '%')->where('status', 1)->paginate(5);
+                $transaksi = Peminjaman::latest()->where('kode_pinjam', 'like', '%' . $this->search . '%')->where('status', 1)->paginate(10);
             } elseif ($this->sedang_dipinjam) {
-                $transaksi = Peminjaman::latest()->where('kode_pinjam', 'like', '%' . $this->search . '%')->where('status', 2)->paginate(5);
+                $transaksi = Peminjaman::latest()->where('kode_pinjam', 'like', '%' . $this->search . '%')->where('status', 2)->paginate(10);
             } elseif ($this->selesai_dipinjam) {
-                $transaksi = Peminjaman::latest()->where('kode_pinjam', 'like', '%' . $this->search . '%')->where('status', 3)->paginate(5);
+                $transaksi = Peminjaman::latest()->where('kode_pinjam', 'like', '%' . $this->search . '%')->where('status', 3)->paginate(10);
             } else {
-                $transaksi = Peminjaman::latest()->where('kode_pinjam', 'like', '%' . $this->search . '%')->where('status', '!=', 0)->paginate(5);
+                $transaksi = Peminjaman::latest()->where('kode_pinjam', 'like', '%' . $this->search . '%')->where('status', '!=', 0)->paginate(10);
             }
         } else {
             if ($this->belum_dipinjam) {
-                $transaksi = Peminjaman::latest()->where('status', 1)->paginate(5);
+                $transaksi = Peminjaman::latest()->where('status', 1)->paginate(10);
             } elseif ($this->sedang_dipinjam) {
-                $transaksi = Peminjaman::latest()->where('status', 2)->paginate(5);
+                $transaksi = Peminjaman::latest()->where('status', 2)->paginate(10);
             } elseif ($this->selesai_dipinjam) {
-                $transaksi = Peminjaman::latest()->where('status', 3)->paginate(5);
+                $transaksi = Peminjaman::latest()->where('status', 3)->paginate(10);
             } else {
-                $transaksi = Peminjaman::latest()->where('status', '!=', 0)->paginate(5);
+                $transaksi = Peminjaman::latest()->where('status', '!=', 0)->paginate(10);
             }
         }
 
