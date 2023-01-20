@@ -151,6 +151,7 @@ class Buku extends Component
 
         $this->delete = true;
         $this->buku_id = $buku->id;
+        $this->judul = $buku->judul;
     }
 
     public function destroy(ModelsBuku $buku)

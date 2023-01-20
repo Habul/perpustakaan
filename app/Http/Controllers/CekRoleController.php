@@ -15,7 +15,7 @@ class CekRoleController extends Controller
     public function __invoke(Request $request)
     {
         if (auth()->user()->hasRole(['admin', 'petugas'])) {
-            return redirect('/dashboard');
+            return redirect('/dashboard')->with(['sukses' => 'Anda telah login!!']);
         } else {
             return redirect('/');
         }

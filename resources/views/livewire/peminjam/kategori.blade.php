@@ -39,7 +39,20 @@
                                 <i class="fas fa-sign-in-alt"></i></a>
                         </li>
                     @endif
+
+                    @if (Route::has('register'))
+                        <li class="nav-item">
+                            <a class="nav-link @yield('menu-register-active')"" href="{{ route('register') }}">{{ __('Register') }}
+                                <i class="fas fa-user-plus"></i></a>
+                        </li>
+                    @endif
                 @else
+                    @if ($count > 0)
+                        <li class="nav-item">
+                            <a class="nav-link" href="/keranjang">Keranjang <span
+                                    class="badge badge-primary">{{ $count }}</span></a>
+                        </li>
+                    @endif
                     <li class="nav-item dropdown">
                         <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
                             data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
@@ -50,14 +63,6 @@
                                 <a class="dropdown-item" href="{{ url('dashboard') }}">
                                     <i class="nav-icon fas fa-tachometer-alt"></i> Dashboard</a>
                             @endrole
-                            {{-- <a class="dropdown-item" href="{{ route('logout') }}"
-                                onclick="event.preventDefault();
-                                                document.getElementById('logout-form').submit();">
-                                {{ __('Logout') }}
-                            </a>
-                            <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                                @csrf
-                            </form> --}}
                             <a class="dropdown-item"" data-toggle="modal" data-target="#logout-form" role="button">
                                 <i class="fas fa-sign-out-alt"></i> Logout
                             </a>

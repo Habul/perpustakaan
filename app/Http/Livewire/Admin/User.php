@@ -91,7 +91,7 @@ class User extends Component
     {
         $validasi = [
             'name' => 'required|max:255',
-            'email' => 'required|email:dns|unique:users',
+            'email' => 'required|email:dns',
             // 'password' => 'required|min:5|max:255',
         ];
 
@@ -110,17 +110,19 @@ class User extends Component
     public function delete(ModelsUser $user)
     {
         $this->delete = true;
+        $this->name  = $user->name;
         $this->user_id = $user->id;
     }
 
     public function destroy(ModelsUser $user)
     {
-        $user = Peminjaman::where('peminjam_id', $user->id)->get();
-        foreach ($user as $key => $value) {
-            $value->update([
-                'peminjam_id' => 1
-            ]);
-        }
+        // $user = Peminjaman::where('petugas_pinjam', $user->id)->get();
+        // foreach ($user as $key => $value) {
+        //     $value->update([
+        //         'petugas_pinjam' => 1
+        //     ]);
+        // }
+
         $user->delete();
 
         session()->flash('sukses', 'Data berhasil dihapus.');
@@ -172,5 +174,6 @@ class User extends Component
         unset($this->email);
         unset($this->password);
         unset($this->password_confirmation);
+        unset($this->user_id);
     }
 }

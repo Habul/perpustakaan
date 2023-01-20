@@ -9,11 +9,13 @@
                      </span>
                  </div>
                  <div class="modal-body">
-                     <span>Anda yakin ingin mengahapus data ?</span>
+                     <span>Anda yakin ingin mengahapus {{ $nama }} ?</span>
                  </div>
                  <div class="modal-footer justify-content-between">
-                     <span wire:click="format" type="button" class="btn btn-default" data-dismiss="modal">Batal</span>
-                     <span type="button" wire:click="destroy({{ $kategori_id }})" class="btn btn-danger">Hapus</span>
+                     <span wire:click="format" type="button" class="btn btn-default" data-dismiss="modal">
+                         <i class="fas fa-times-circle"></i> Batal</span>
+                     <span type="button" wire:click="destroy({{ $kategori_id }})" class="btn btn-danger">
+                         <i class="fas fa-trash"></i> Hapus</span>
                  </div>
              </div>
          </div>

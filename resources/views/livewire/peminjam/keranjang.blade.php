@@ -21,8 +21,6 @@
         <div class="col-md-12 mb-2">
             @if ($keranjang->tanggal_pinjam)
                 <strong>Tanggal Pinjam: {{ $keranjang->tanggal_pinjam }}</strong>
-            @else
-                <button wire:click="pinjam({{ $keranjang->id }})" class="btn btn-sm btn-success">Pinjam</button>
             @endif
             <strong class="float-right">Kode Pinjam : {{ $keranjang->kode_pinjam }}</strong>
         </div>
@@ -38,9 +36,9 @@
                         <th>Penulis</th>
                         <th>Rak</th>
                         <th>Baris</th>
-                        @if (!$keranjang->tanggal_pinjam)
-                            <th></th>
-                        @endif
+                        {{-- @if (!$keranjang->tanggal_pinjam) --}}
+                        <th>Aksi</th>
+                        {{-- @endif --}}
                     </tr>
                 </thead>
                 <tbody>
@@ -52,18 +50,23 @@
                             <td>{{ $item->buku->rak->rak }}</td>
                             <td>{{ $item->buku->rak->baris }}</td>
                             <td>
-                                @if (!$keranjang->tanggal_pinjam)
-                                    <button wire:click="hapus({{ $keranjang->id }}, {{ $item->id }})"
-                                        class="btn btn-sm btn-danger">Hapus</button>
-                                @endif
+                                {{-- @if (!$keranjang->tanggal_pinjam) --}}
+                                <button wire:click="hapus({{ $keranjang->id }}, {{ $item->id }})"
+                                    class="btn btn-sm btn-danger"><i class="fas fa-trash"></i></button>
+                                {{-- @endif --}}
                             </td>
                         </tr>
                     @endforeach
                 </tbody>
             </table>
-            @if (!$keranjang->tanggal_pinjam)
-                <button wire:click="hapusMasal" class="btn btn-sm btn-danger">Hapus Masal</button>
-            @endif
+            {{-- @if (!$keranjang->tanggal_pinjam) --}}
+            <div class="d-flex justify-content-around">
+                <button wire:click="hapusMasal" class="btn btn-sm btn-danger">
+                    <i class="fas fa-recycle"></i> Hapus Masal</button>
+                <button wire:click="pinjam({{ $keranjang->id }})" class="btn btn-sm btn-success">
+                    <i class="fas fa-shopping-basket"></i> Pinjam</button>
+                {{-- @endif --}}
+            </div>
         </div>
     </div>
 </div>

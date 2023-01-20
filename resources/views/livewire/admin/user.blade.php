@@ -4,6 +4,7 @@
         @include('admin-lte/flash')
         @include('admin/user/create')
         @include('admin/user/edit')
+        @include('admin/user/delete')
         <div class="btn-group mb-3">
             <button wire:click="format" class="btn btn-sm bg-teal mr-2">Semua</button>
             <button wire:click="admin" class="btn btn-sm bg-indigo mr-2">Admin</button>
@@ -34,14 +35,16 @@
             <!-- /.card-header -->
             @if ($user->isNotEmpty())
                 <div class="card-body table-responsive">
-                    <table id="example2" class="table table-bordered table-hover table-sm">
+                    <table id="example2" class="table table-striped table-sm">
                         <thead class="thead-light text-center">
                             <tr>
                                 <th width="10%">No</th>
                                 <th>Nama</th>
                                 <th>Email</th>
                                 <th>Role</th>
-                                <th>Aksi</th>
+                                @if ($admin || $petugas || $peminjam)
+                                    <th>Aksi</th>
+                                @endif
                             </tr>
                         </thead>
                         <tbody>
@@ -59,12 +62,14 @@
                                             <span class="badge bg-fuchsia">Peminjam</span>
                                         @endif
                                     </td>
-                                    <td class="align-middle text-center">
-                                        <a class="btn btn-warning" wire:click="edit({{ $item->id }})"
-                                            title="Edit"><i class="fa fa-edit"></i></a>
-                                        <a class="btn btn-danger" wire:click="delete({{ $item->id }})"
-                                            title="Hapus"><i class="fa fa-trash"></i></a>
-                                    </td>
+                                    @if ($admin || $petugas || $peminjam)
+                                        <td class="align-middle text-center">
+                                            <a class="btn btn-warning" wire:click="edit({{ $item->id }})"
+                                                title="Edit"><i class="fa fa-edit"></i></a>
+                                            <a class="btn btn-danger" wire:click="delete({{ $item->id }})"
+                                                title="Hapus"><i class="fa fa-trash"></i></a>
+                                        </td>
+                                    @endif
                                 </tr>
                             @endforeach
                         </tbody>

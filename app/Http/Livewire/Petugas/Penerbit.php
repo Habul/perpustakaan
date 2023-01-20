@@ -64,6 +64,7 @@ class Penerbit extends Component
     {
         $this->delete = true;
         $this->penerbit_id = $penerbit->id;
+        $this->nama = $penerbit->nama;
     }
 
     public function destroy(ModelsPenerbit $penerbit)

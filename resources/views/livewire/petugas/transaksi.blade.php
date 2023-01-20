@@ -12,10 +12,9 @@
 
         <div class="card">
             <div class="card-header">
-                <span wire:click="create" class="btn btn-sm btn-primary">Tambah</span>
 
                 <div class="card-tools">
-                    <div class="input-group input-group-sm" style="width: 150px;">
+                    <div class="input-group input-group">
                         <input wire:model="search" type="search" name="table_search" class="form-control float-right"
                             placeholder="Search">
 
@@ -29,11 +28,11 @@
             </div>
             <!-- /.card-header -->
             @if ($transaksi->isNotEmpty())
-                <div class="card-body table-responsive p-0">
-                    <table class="table table-hover text-nowrap">
-                        <thead>
+                <div class="card-body">
+                    <table id="example2" class="table table-bordered table-striped table-sm">
+                        <thead class="thead-light text-center">
                             <tr>
-                                <th width="10%">No</th>
+                                <th width="6%">No</th>
                                 <th>Kode Pinjam</th>
                                 <th>Buku</th>
                                 <th>Lokasi</th>
@@ -49,28 +48,30 @@
                         <tbody>
                             @foreach ($transaksi as $item)
                                 <tr>
-                                    <td>{{ $loop->iteration }}</td>
-                                    <td>{{ $item->kode_pinjam }}</td>
-                                    <td>
+                                    <td class="align-middle text-center">{{ $loop->iteration }}</td>
+                                    <td class="align-middle">{{ $item->kode_pinjam }}</td>
+                                    <td class="align-middle">
                                         <ul>
                                             @foreach ($item->detail_peminjaman as $detail_peminjaman)
                                                 <li>{{ $detail_peminjaman->buku->judul }}</li>
                                             @endforeach
                                         </ul>
                                     </td>
-                                    <td>
+                                    <td class="align-middle">
                                         <ul>
                                             @foreach ($item->detail_peminjaman as $detail_peminjaman)
                                                 <li>{{ $detail_peminjaman->buku->rak->lokasi }}</li>
                                             @endforeach
                                         </ul>
                                     </td>
-                                    <td>{{ $item->tanggal_pinjam }}</td>
-                                    <td>{{ $item->tanggal_kembali }}</td>
-                                    <td>{{ $item->denda }}</td>
-                                    <td>
+                                    <td class="align-middle text-center">{{ $item->tanggal_pinjam }}</td>
+                                    <td class="align-middle text-center">{{ $item->tanggal_kembali }}</td>
+                                    <td class="align-middle text-center">{{ $item->denda }}</td>
+                                    <td class="align-middle text-center">
                                         @if ($item->status == 1)
-                                            <span class="badge bg-indigo">Belum Dipinjam</span>
+                                            <span class="badge
+                                        bg-indigo">Belum
+                                                Dipinjam</span>
                                         @elseif ($item->status == 2)
                                             <span class="badge bg-olive">Sedang Dipinjam</span>
                                         @else
@@ -78,7 +79,7 @@
                                         @endif
                                     </td>
                                     @if (!$selesai_dipinjam)
-                                        <td>
+                                        <td class="align-middle text-center">
                                             @if ($item->status == 1)
                                                 <span wire:click="pinjam({{ $item->id }})"
                                                     class="btn btn-sm btn-success mr-2">Pinjam</span>

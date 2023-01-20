@@ -64,12 +64,13 @@ class Kategori extends Component
         $this->format();
     }
 
-    public function delete($id)
+    public function delete(ModelsKategori $kategori)
     {
         $this->format();
 
         $this->delete = true;
-        $this->kategori_id = $id;
+        $this->kategori_id = $kategori->id;
+        $this->nama = $kategori->nama;
     }
 
     public function destroy(ModelsKategori $kategori)

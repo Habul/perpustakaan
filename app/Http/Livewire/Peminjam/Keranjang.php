@@ -26,7 +26,7 @@ class Keranjang extends Component
             $detail_peminjaman->delete();
             session()->flash('sukses', 'Data berhasil dihapus');
             $this->emit('kurangiKeranjang');
-        }  
+        }
     }
 
     public function hapusMasal()

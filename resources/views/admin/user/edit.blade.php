@@ -1,5 +1,5 @@
  @if ($edit)
-     <div class="modal fade show" id="modal-default" style="display: block; padding-right: 17px;">
+     <div class="modal fade show" id="modal-default" style="display: block;">
          <div class="modal-dialog modal-dialog-centered">
              <div class="modal-content bg-light color-palette">
                  <div class="modal-header">
@@ -24,18 +24,10 @@
                          @enderror
                      </div>
                      <div class="form-group">
-                         <label for="password">Password</label>
+                         <label for="password">Ubah Password</label>
                          <input wire:model="password" type="password" class="form-control" id="password">
                          <small> jika tidak ingin mengubah password</small>
                          @error('password')
-                             <small class="text-danger">{{ $message }}</small>
-                         @enderror
-                     </div>
-                     <div class="form-group">
-                         <label for="ulangi_password">Ulangi Password</label>
-                         <input wire:model="password_confirmation" type="password" class="form-control"
-                             id="ulangi_password">
-                         @error('password_confirmation')
                              <small class="text-danger">{{ $message }}</small>
                          @enderror
                      </div>

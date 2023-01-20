@@ -92,6 +92,7 @@ class Rak extends Component
     {
         $this->delete = true;
         $this->rak_id = $rak->id;
+        $this->rak = $rak->slug;
     }
 
     public function destroy(ModelsRak $rak)

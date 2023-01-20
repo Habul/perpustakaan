@@ -68,7 +68,8 @@
                     </tbody>
                 </table>
 
-                {{-- <button wire:click="keranjang({{ $buku->id }})" class="btn btn-success">Keranjang</button> --}}
+                <button wire:click="keranjang({{ $buku->id }})" class="btn btn-success">
+                    <i class="fas fa-shopping-basket"></i> Keranjang</button>
             </div>
         </div>
     @else

@@ -9,7 +9,7 @@
                      </span>
                  </div>
                  <div class="modal-body">
-                     <span>Anda yakin ingin mengahapus data ?</span>
+                     <span>Anda yakin ingin mengahapus {{ $nama }} ?</span>
                  </div>
                  <div class="modal-footer justify-content-between">
                      <span wire:click="format" type="button" class="btn btn-default" data-dismiss="modal">
