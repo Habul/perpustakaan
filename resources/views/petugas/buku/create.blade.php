@@ -39,7 +39,8 @@
                      </div>
                      <div class="form-group">
                          <label for="sampul">Sampul</label>
-                         <input wire:model="sampul" type="file" class="form-control" id="sampul" min="1">
+                         <input wire:model="sampul" type="file" class="form-control form-control-border "
+                             id="sampul" min="1" onchange="priviewImage()">
                          @error('sampul')
                              <small class="text-danger">{{ $message }}</small>
                          @enderror
@@ -96,7 +97,7 @@
                  <div class="modal-footer justify-content-between">
                      <span wire:click="format" type="button" class="btn btn-default" data-dismiss="modal">
                          <i class="fas fa-times-circle"></i> Batal</span>
-                     <span type="button" wire:click="store" class="btn btn-success"><i class="fas fa-check-circle"></i>
+                     <span type="button" wire:click="store" class="btn btn-primary"><i class="fas fa-check-circle"></i>
                          Simpan</span>
                  </div>
              </div>

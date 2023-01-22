@@ -39,7 +39,8 @@
                      </div>
                      <div class="form-group">
                          <label for="sampul">Sampul</label>
-                         <input wire:model="sampul" type="file" class="form-control" id="sampul" min="1">
+                         <input wire:model="sampul" type="file" class="form-control form-control-border"
+                             id="sampul" min="1">
                          @error('sampul')
                              <small class="text-danger">{{ $message }}</small>
                          @enderror

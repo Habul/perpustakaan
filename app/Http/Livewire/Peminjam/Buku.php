@@ -55,7 +55,7 @@ class Buku extends Component
                     ->where('status', '!=', 3)
                     ->get();
 
-                // jumlah maksimal 2
+                // jumlah maksimal 3
                 if ($peminjaman_lama->count() == 3) {
                     session()->flash('gagal', 'Buku yang dipinjam maksimal 3');
                 } else {

@@ -13,6 +13,7 @@ class Transaksi extends Component
     protected $paginationTheme = 'bootstrap';
 
     public $belum_dipinjam, $sedang_dipinjam, $selesai_dipinjam, $search;
+    public $kode_pinjam, $name, $kelas, $buku, $tanggal_pinjam, $tanggal_kembali;
 
     public function belumDipinjam()
     {
@@ -65,7 +66,7 @@ class Transaksi extends Component
 
         if (Carbon::create($peminjaman->tanggal_kembali)->lessThan(today())) {
             $denda = Carbon::create($peminjaman->tanggal_kembali)->diffInDays(today());
-            $denda *= 1000;
+            $denda *= 500;
             $data['denda'] = $denda;
         }
 
@@ -73,41 +74,48 @@ class Transaksi extends Component
         session()->flash('sukses', 'Buku berhasil dikembalikan.');
     }
 
-    // public function create()
-    // {
-    //     $this->format();
-
-    //     $this->create = true;
-    //     $this->kategori = Kategori::all();
-    //     $this->penerbit = Penerbit::all();
-    // }
+    public function print(Peminjaman $peminjaman)
+    {
+        return view('livewire.petugas.print', [
+            'kode_pinjam' => $peminjaman->kode_pinjam,
+            'name' => $peminjaman->user->name,
+            'kelas' => $peminjaman->user->kelas,
+            'buku' => $peminjaman->detail_peminjaman->judul,
+            'tanggal_pinjam' => $peminjaman->tanggal_pinjam,
+            'tanggal_kembali' => $peminjaman->tanggal_kembali,
+        ]);
+    }
 
     public function render()
     {
         if ($this->search) {
             if ($this->belum_dipinjam) {
-                $transaksi = Peminjaman::latest()->where('kode_pinjam', 'like', '%' . $this->search . '%')->where('status', 1)->paginate(10);
+                $transaksi = Peminjaman::latest()->where('kode_pinjam', 'like', '%' . $this->search . '%')
+                    ->orWhere('denda', 'like', '%' . $this->search . '%')->where('status', 1)->paginate(5);
             } elseif ($this->sedang_dipinjam) {
-                $transaksi = Peminjaman::latest()->where('kode_pinjam', 'like', '%' . $this->search . '%')->where('status', 2)->paginate(10);
+                $transaksi = Peminjaman::latest()->where('kode_pinjam', 'like', '%' . $this->search . '%')
+                    ->orWhere('denda', 'like', '%' . $this->search . '%')->where('status', 2)->paginate(5);
             } elseif ($this->selesai_dipinjam) {
-                $transaksi = Peminjaman::latest()->where('kode_pinjam', 'like', '%' . $this->search . '%')->where('status', 3)->paginate(10);
+                $transaksi = Peminjaman::latest()->where('kode_pinjam', 'like', '%' . $this->search . '%')
+                    ->orWhere('denda', 'like', '%' . $this->search . '%')->where('status', 3)->paginate(5);
             } else {
-                $transaksi = Peminjaman::latest()->where('kode_pinjam', 'like', '%' . $this->search . '%')->where('status', '!=', 0)->paginate(10);
+                $transaksi = Peminjaman::latest()->where('kode_pinjam', 'like', '%' . $this->search . '%')
+                    ->orWhere('denda', 'like', '%' . $this->search . '%')->where('status', '!=', 0)->paginate(5);
             }
         } else {
             if ($this->belum_dipinjam) {
-                $transaksi = Peminjaman::latest()->where('status', 1)->paginate(10);
+                $transaksi = Peminjaman::latest()->where('status', 1)->paginate(5);
             } elseif ($this->sedang_dipinjam) {
-                $transaksi = Peminjaman::latest()->where('status', 2)->paginate(10);
+                $transaksi = Peminjaman::latest()->where('status', 2)->paginate(5);
             } elseif ($this->selesai_dipinjam) {
-                $transaksi = Peminjaman::latest()->where('status', 3)->paginate(10);
+                $transaksi = Peminjaman::latest()->where('status', 3)->paginate(5);
             } else {
-                $transaksi = Peminjaman::latest()->where('status', '!=', 0)->paginate(10);
+                $transaksi = Peminjaman::latest()->where('status', '!=', 0)->paginate(5);
             }
         }
 
         return view('livewire.petugas.transaksi', [
-            'transaksi' => $transaksi
+            'transaksi' => $transaksi,
         ]);
     }
 

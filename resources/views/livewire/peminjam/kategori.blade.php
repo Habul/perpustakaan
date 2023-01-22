@@ -39,13 +39,6 @@
                                 <i class="fas fa-sign-in-alt"></i></a>
                         </li>
                     @endif
-
-                    @if (Route::has('register'))
-                        <li class="nav-item">
-                            <a class="nav-link @yield('menu-register-active')"" href="{{ route('register') }}">{{ __('Register') }}
-                                <i class="fas fa-user-plus"></i></a>
-                        </li>
-                    @endif
                 @else
                     @if ($count > 0)
                         <li class="nav-item">

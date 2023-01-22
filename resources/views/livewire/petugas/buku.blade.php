@@ -48,8 +48,8 @@
                                     <td class="align-middle">{{ $item->penulis }}</td>
                                     <td class="align-middle">{{ $item->kategori->nama }}</td>
                                     <td class="align-middle text-center">
-                                        <a class="btn btn-success" wire:click="show({{ $item->id }})"
-                                            title="Lihat"><i class="fa fa-search"></i></a>
+                                        <a class="btn btn-info" wire:click="show({{ $item->id }})" title="Lihat">
+                                            <i class="fa fa-search"></i></a>
                                         <a class="btn btn-warning" wire:click="edit({{ $item->id }})"
                                             title="Edit"><i class="fa fa-edit"></i></a>
                                         <a class="btn btn-danger" wire:click="delete({{ $item->id }})"
@@ -60,10 +60,8 @@
                         </tbody>
                     </table>
                 </div>
-                <!-- /.card-body -->
             @endif
         </div>
-        <!-- /.card -->
 
         <div class="row justify-content-center">
             {{ $buku->links() }}

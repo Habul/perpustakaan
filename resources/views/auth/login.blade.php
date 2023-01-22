@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('menu-login-active','active')
+@section('menu-login-active', 'active')
 
 @section('content')
     <div class="container">
@@ -66,9 +66,14 @@
                                     <button type="submit" class="btn btn-primary">
                                         {{ __('Login') }}
                                     </button>
-
+                                    @if (Route::has('register'))
+                                        <a class="btn btn-warning" href="{{ route('register') }}">
+                                            {{ __('Register') }}
+                                        </a>
+                                    @endif
+                                    <br />
                                     @if (Route::has('password.request'))
-                                        <a class="btn btn-link" href="{{ route('password.request') }}">
+                                        <a class="btn btn-link mt-2" href="{{ route('password.request') }}">
                                             {{ __('Forgot Your Password?') }}
                                         </a>
                                     @endif

@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('menu-register-active', 'active')
+@section('menu-login-active', 'active')
 
 @section('content')
     <div class="container">
@@ -8,7 +8,7 @@
                 <div class="card">
                     <div class="card-header">{{ __('Register') }}</div>
 
-                    <div class="card-body">
+                    <div class="card-body shadow">
                         <form method="POST" action="{{ route('register') }}">
                             @csrf
 
@@ -22,6 +22,23 @@
                                         value="{{ old('name') }}" required autocomplete="name" autofocus>
 
                                     @error('name')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
+                                </div>
+                            </div>
+
+                            <div class="form-group row">
+                                <label for="email"
+                                    class="col-md-4 col-form-label text-md-right">{{ __('Kelas') }}</label>
+
+                                <div class="col-md-6">
+                                    <input id="kelas" type="text"
+                                        class="form-control @error('kelas') is-invalid @enderror" name="kelas"
+                                        value="{{ old('kelas') }}" required autocomplete="kelas">
+
+                                    @error('kelas')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>
                                         </span>

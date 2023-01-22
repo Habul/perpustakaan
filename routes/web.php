@@ -10,6 +10,7 @@ use App\Http\Controllers\Petugas\DashboardController;
 use App\Http\Controllers\Petugas\KategoriController;
 use App\Http\Controllers\Petugas\PenerbitController;
 use App\Http\Controllers\Petugas\RakController;
+use App\http\Controllers\Petugas\LaporanController;
 use App\Http\Controllers\Petugas\TransaksiController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
@@ -43,5 +44,6 @@ Route::middleware(['auth'])->group(function () {
     // role admin
     Route::middleware(['role:admin'])->group(function () {
         Route::get('/user', UserController::class);
+        Route::get('/laporan', LaporanController::class);
     });
 });

@@ -20,7 +20,7 @@
                  <div class="modal-footer justify-content-between">
                      <span wire:click="format" type="button" class="btn btn-default" data-dismiss="modal">
                          <i class="fas fa-times-circle"></i> Batal</span>
-                     <span type="button" wire:click="store" class="btn btn-success">
+                     <span type="button" wire:click="store" class="btn btn-primary">
                          <i class="fas fa-check-circle"></i> Simpan</span>
                  </div>
              </div>

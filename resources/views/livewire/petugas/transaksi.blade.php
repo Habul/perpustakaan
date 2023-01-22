@@ -4,13 +4,16 @@
         @include('admin-lte/flash')
 
         <div class="btn-group mb-3">
-            <button wire:click="format" class="btn btn-sm bg-teal mr-2">Semua</button>
-            <button wire:click="belumDipinjam" class="btn btn-sm bg-indigo mr-2">Belum Dipinjam</button>
-            <button wire:click="sedangDipinjam" class="btn btn-sm bg-olive mr-2">Sedang Dipinjam</button>
-            <button wire:click="selesaiDipinjam" class="btn btn-sm bg-fuchsia mr-2">Selesai Dipinjam</button>
+            <button wire:click="format" class="btn btn-sm bg-teal mr-2"><i class="fas fa-book-open"></i> Semua</button>
+            <button wire:click="belumDipinjam" class="btn btn-sm bg-indigo mr-2"><i class="fas fa-shopping-cart"></i>
+                Belum Dipinjam</button>
+            <button wire:click="sedangDipinjam" class="btn btn-sm bg-olive mr-2"><i class="far fa-clock"></i>
+                Sedang Dipinjam</button>
+            <button wire:click="selesaiDipinjam" class="btn btn-sm bg-fuchsia mr-2"><i class="far fa-check-circle"></i>
+                Selesai Dipinjam</button>
         </div>
 
-        <div class="card">
+        <div class="card card-primary card-outline">
             <div class="card-header">
 
                 <div class="card-tools">
@@ -34,6 +37,8 @@
                             <tr>
                                 <th width="6%">No</th>
                                 <th>Kode Pinjam</th>
+                                <th>Nama</th>
+                                <th>Kelas</th>
                                 <th>Buku</th>
                                 <th>Lokasi</th>
                                 <th>Tanggal Pinjam</th>
@@ -50,6 +55,8 @@
                                 <tr>
                                     <td class="align-middle text-center">{{ $loop->iteration }}</td>
                                     <td class="align-middle">{{ $item->kode_pinjam }}</td>
+                                    <td class="align-middle text-center">{{ $item->user->name }}</td>
+                                    <td class="align-middle text-center">{{ $item->user->kelas }}</td>
                                     <td class="align-middle">
                                         <ul>
                                             @foreach ($item->detail_peminjaman as $detail_peminjaman)
@@ -69,9 +76,8 @@
                                     <td class="align-middle text-center">{{ $item->denda }}</td>
                                     <td class="align-middle text-center">
                                         @if ($item->status == 1)
-                                            <span class="badge
-                                        bg-indigo">Belum
-                                                Dipinjam</span>
+                                            <span class="badge bg-indigo">
+                                                Belum Dipinjam</span>
                                         @elseif ($item->status == 2)
                                             <span class="badge bg-olive">Sedang Dipinjam</span>
                                         @else
@@ -82,10 +88,15 @@
                                         <td class="align-middle text-center">
                                             @if ($item->status == 1)
                                                 <span wire:click="pinjam({{ $item->id }})"
-                                                    class="btn btn-sm btn-success mr-2">Pinjam</span>
+                                                    class="btn btn-sm btn-success mr-2">
+                                                    <i class="fas fa-shopping-basket"></i> Pinjam</span>
                                             @elseif ($item->status == 2)
                                                 <span wire:click="kembali({{ $item->id }})"
-                                                    class="btn btn-sm btn-primary mr-2">Kembali</span>
+                                                    class="btn btn-sm btn-primary mr-2">
+                                                    <i class="fas fa-undo-alt"></i> Kembali</span>
+                                                <span wire:click="print({{ $item->id }})"
+                                                    class="btn btn-sm btn-warning mr-2">
+                                                    <i class="fas fa-print"></i> Print</span>
                                             @endif
                                         </td>
                                     @endif

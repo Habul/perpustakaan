@@ -116,12 +116,14 @@ class User extends Component
 
     public function destroy(ModelsUser $user)
     {
-        // $user = Peminjaman::where('petugas_pinjam', $user->id)->get();
-        // foreach ($user as $key => $value) {
-        //     $value->update([
-        //         'petugas_pinjam' => 1
-        //     ]);
-        // }
+        $user = Peminjaman::where('petugas_pinjam', $user->id)->get();
+        foreach ($user as $key => $value) {
+            $value->update([
+                'petugas_pinjam' => 1
+            ]);
+        }
+
+        ddd($user);
 
         $user->delete();
 
