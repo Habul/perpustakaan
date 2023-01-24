@@ -54,4 +54,9 @@ class User extends Authenticatable
     {
         $this->attributes['name'] = ucfirst($value);
     }
+
+    public function setKelasAttribute($value)
+    {
+        $this->attributes['kelas'] = strtoupper($value);
+    }
 }

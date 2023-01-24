@@ -13,7 +13,7 @@ class Transaksi extends Component
     protected $paginationTheme = 'bootstrap';
 
     public $belum_dipinjam, $sedang_dipinjam, $selesai_dipinjam, $search;
-    public $kode_pinjam, $name, $kelas, $buku, $tanggal_pinjam, $tanggal_kembali;
+    public $kode_pinjam, $name, $kelas, $buku, $tanggal_pinjam, $tanggal_kembali, $tanggal_pengembalian;
 
     public function belumDipinjam()
     {

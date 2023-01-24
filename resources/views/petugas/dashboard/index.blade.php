@@ -75,9 +75,21 @@
 
     <div class="row">
         <div class="col-md-6">
-            <div class="card">
+            <div class="card card-outline card-primary">
+                <div class="card-header">
+                    <h5 class="card-title">Buku Terbaru</h5>
+                    <div class="card-tools">
+                        <button type="button" class="btn btn-tool" data-card-widget="maximize">
+                            <i class="fas fa-expand"></i>
+                        </button>
+                        <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                            <i class="fas fa-minus"></i>
+                        </button>
+                        <button type="button" class="btn btn-tool" data-card-widget="remove">
+                            <i class="fas fa-times"></i>
+                    </div>
+                </div>
                 <div class="card-body">
-                    <h5>Buku Terbaru</h5>
                     <table class="table table-bordered">
                         <thead>
                             <tr>
@@ -101,9 +113,21 @@
         </div>
 
         <div class="col-md-6">
-            <div class="card">
+            <div class="card card-outline card-success">
+                <div class="card-header">
+                    <h5 class="card-title">User Terbaru</h5>
+                    <div class="card-tools">
+                        <button type="button" class="btn btn-tool" data-card-widget="maximize">
+                            <i class="fas fa-expand"></i>
+                        </button>
+                        <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                            <i class="fas fa-minus"></i>
+                        </button>
+                        <button type="button" class="btn btn-tool" data-card-widget="remove">
+                            <i class="fas fa-times"></i>
+                    </div>
+                </div>
                 <div class="card-body">
-                    <h5>User Terbaru</h5>
                     <table class="table table-bordered">
                         <thead>
                             <tr>
@@ -127,9 +151,21 @@
         </div>
 
         <div class="col-md-6">
-            <div class="card">
+            <div class="card card-outline card-secondary">
+                <div class="card-header">
+                    <h5 class="card-title">Selesai Dipinjam</h5>
+                    <div class="card-tools">
+                        <button type="button" class="btn btn-tool" data-card-widget="maximize">
+                            <i class="fas fa-expand"></i>
+                        </button>
+                        <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                            <i class="fas fa-minus"></i>
+                        </button>
+                        <button type="button" class="btn btn-tool" data-card-widget="remove">
+                            <i class="fas fa-times"></i>
+                    </div>
+                </div>
                 <div class="card-body">
-                    <h5>Selesai Dipinjam</h5>
                     <table class="table table-bordered">
                         <thead>
                             <tr>
@@ -152,9 +188,21 @@
             </div>
         </div>
         <div class="col-md-6">
-            <div class="card">
+            <div class="card card-outline card-warning">
+                <div class="card-header">
+                    <h5 class="card-title">Sedang Dipinjam</h5>
+                    <div class="card-tools">
+                        <button type="button" class="btn btn-tool" data-card-widget="maximize">
+                            <i class="fas fa-expand"></i>
+                        </button>
+                        <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                            <i class="fas fa-minus"></i>
+                        </button>
+                        <button type="button" class="btn btn-tool" data-card-widget="remove">
+                            <i class="fas fa-times"></i>
+                    </div>
+                </div>
                 <div class="card-body">
-                    <h5>Sedang Dipinjam</h5>
                     <table class="table table-bordered">
                         <thead>
                             <tr>

@@ -35,11 +35,12 @@
             <!-- /.card-header -->
             @if ($user->isNotEmpty())
                 <div class="card-body table-responsive">
-                    <table id="example2" class="table table-striped table-sm">
+                    <table id="example2" class="table table-sm table-bordered table-hover">
                         <thead class="thead-light text-center">
                             <tr>
-                                <th width="10%">No</th>
+                                <th width="6%">No</th>
                                 <th>Nama</th>
+                                <th>Kelas</th>
                                 <th>Email</th>
                                 <th>Role</th>
                                 @if ($admin || $petugas || $peminjam)
@@ -52,6 +53,13 @@
                                 <tr>
                                     <td class="align-middle text-center">{{ $loop->iteration }}</td>
                                     <td class="align-middle">{{ $item->name }}</td>
+                                    <td class="align-middle text-center">
+                                        @empty($item->kelas)
+                                            {{ '-' }}
+                                        @else
+                                            {{ $item->kelas }}
+                                        @endempty
+                                    </td>
                                     <td class="align-middle">{{ $item->email }}</td>
                                     <td class="align-middle text-center">
                                         @if ($item->roles[0]->name == 'admin')
@@ -75,10 +83,8 @@
                         </tbody>
                     </table>
                 </div>
-                <!-- /.card-body -->
             @endif
         </div>
-        <!-- /.card -->
 
         <div class="row justify-content-center">
             {{ $user->links() }}
@@ -93,7 +99,5 @@
                 </div>
             </div>
         @endif
-
     </div>
 </div>
-<!-- /.row -->

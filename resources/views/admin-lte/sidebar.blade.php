@@ -78,12 +78,14 @@
                      </a>
                  </li>
 
-                 <li class="nav-item">
-                     <a href="/laporan" class="nav-link @yield('active-laporan')">
-                         <i class="nav-icon fas fa-book"></i>
-                         <p>Laporan</p>
-                     </a>
-                 </li>
+                 @role('admin')
+                     <li class="nav-item">
+                         <a href="/laporan" class="nav-link @yield('active-laporan')">
+                             <i class="nav-icon fas fa-book"></i>
+                             <p>Laporan</p>
+                         </a>
+                     </li>
+                 @endrole
 
                  <li class="nav-item">
                      <a href="/chart" class="nav-link @yield('active-chart')">

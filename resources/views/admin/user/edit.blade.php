@@ -17,6 +17,13 @@
                          @enderror
                      </div>
                      <div class="form-group">
+                         <label for="kelas">Kelas</label>
+                         <input wire:model="kelas" type="text" class="form-control" id="kelas">
+                         @error('kelas')
+                             <small class="text-danger">{{ $message }}</small>
+                         @enderror
+                     </div>
+                     <div class="form-group">
                          <label for="email">Email</label>
                          <input wire:model="email" type="email" class="form-control" id="email">
                          @error('email')

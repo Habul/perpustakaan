@@ -10,7 +10,7 @@ use App\Http\Controllers\Petugas\DashboardController;
 use App\Http\Controllers\Petugas\KategoriController;
 use App\Http\Controllers\Petugas\PenerbitController;
 use App\Http\Controllers\Petugas\RakController;
-use App\http\Controllers\Petugas\LaporanController;
+use App\Http\Controllers\Petugas\LaporanController;
 use App\Http\Controllers\Petugas\TransaksiController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;

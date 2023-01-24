@@ -24,7 +24,7 @@
         $("#example1").DataTable({
             "paging": false,
             "lengthChange": true,
-            "searching": false,
+            "searching": true,
             "ordering": false,
             "info": false,
             "autoWidth": false,

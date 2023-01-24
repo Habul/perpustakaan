@@ -104,7 +104,7 @@ class Kategori extends Component
     public function render()
     {
         if ($this->search) {
-            $kategori = ModelsKategori::latest()->where('nama', 'like', '%' . $this->search . '%')->paginate(5);
+            $kategori = ModelsKategori::latest()->where('nama', 'like', '%' . $this->search . '%')->paginate(10);
         } else {
             $kategori = ModelsKategori::latest()->paginate(10);
         }

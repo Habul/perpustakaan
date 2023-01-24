@@ -1,38 +1,24 @@
 <div class="row">
     <div class="col-12">
-
-        @include('admin-lte/flash')
-
-        <div class="btn-group mb-3">
-            <button wire:click="format" class="btn btn-sm bg-teal mr-2"><i class="fas fa-book-open"></i> Semua</button>
-            <button wire:click="belumDipinjam" class="btn btn-sm bg-indigo mr-2"><i class="fas fa-shopping-cart"></i>
-                Belum Dipinjam</button>
-            <button wire:click="sedangDipinjam" class="btn btn-sm bg-olive mr-2"><i class="far fa-clock"></i>
-                Sedang Dipinjam</button>
-            <button wire:click="selesaiDipinjam" class="btn btn-sm bg-fuchsia mr-2"><i class="far fa-check-circle"></i>
-                Selesai Dipinjam</button>
-        </div>
-
-        <div class="card card-primary card-outline">
+        <div class="card card-info card-outline">
             <div class="card-header">
-
+                <h4 class="card-title">Laporan Perpustakaan</h4>
                 <div class="card-tools">
-                    <div class="input-group input-group">
-                        <input wire:model="search" type="search" name="table_search" class="form-control float-right"
-                            placeholder="Search">
-
-                        <div class="input-group-append">
-                            <button type="submit" class="btn btn-default">
-                                <i class="fas fa-search"></i>
-                            </button>
-                        </div>
+                    <div class="card-tools">
+                        <button type="button" class="btn btn-tool" data-card-widget="maximize">
+                            <i class="fas fa-expand"></i>
+                        </button>
+                        <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                            <i class="fas fa-minus"></i>
+                        </button>
+                        <button type="button" class="btn btn-tool" data-card-widget="remove">
+                            <i class="fas fa-times"></i>
                     </div>
                 </div>
             </div>
-            <!-- /.card-header -->
-            @if ($transaksi->isNotEmpty())
+            @if ($laporan->isNotEmpty())
                 <div class="card-body table-responsive">
-                    <table id="example2" class="table table-sm table-bordered table-hover">
+                    <table id="example1" class="table table-sm table-bordered table-striped">
                         <thead class="thead-light text-center">
                             <tr>
                                 <th width="4%">No</th>
@@ -46,13 +32,10 @@
                                 <th>Denda</th>
                                 <th>Pengembalian</th>
                                 <th>Status</th>
-                                @if (!$selesai_dipinjam)
-                                    <th width="15%">Aksi</th>
-                                @endif
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($transaksi as $item)
+                            @foreach ($laporan as $item)
                                 <tr>
                                     <td class="align-middle text-center">{{ $loop->iteration }}</td>
                                     <td class="align-middle">{{ $item->kode_pinjam }}</td>
@@ -92,25 +75,6 @@
                                             <span class="badge bg-fuchsia">Selesai Dipinjam</span>
                                         @endif
                                     </td>
-                                    @if (!$selesai_dipinjam)
-                                        <td class="align-middle text-center">
-                                            @if ($item->status == 1)
-                                                <span wire:click="pinjam({{ $item->id }})"
-                                                    class="btn btn-sm btn-success mr-2">
-                                                    <i class="fas fa-shopping-basket"></i> Pinjam</span>
-                                            @elseif ($item->status == 2)
-                                                <span wire:click="kembali({{ $item->id }})"
-                                                    class="btn btn-sm btn-primary mr-2">
-                                                    <i class="fas fa-undo-alt"></i> Kembali</span>
-                                                <span wire:click="print({{ $item->id }})"
-                                                    class="btn btn-sm btn-warning mr-2">
-                                                    <i class="fas fa-print"></i> Print</span>
-                                            @else
-                                                <span class="btn btn-sm btn-success disabled">
-                                                    <i class="fas fa-lock"></i></span>
-                                            @endif
-                                        </td>
-                                    @endif
                                 </tr>
                             @endforeach
                         </tbody>
@@ -120,10 +84,10 @@
         </div>
 
         <div class="row justify-content-center">
-            {{ $transaksi->links() }}
+            {{ $laporan->links() }}
         </div>
 
-        @if ($transaksi->isEmpty())
+        @if ($laporan->isEmpty())
             <div class="card">
                 <div class="card-body">
                     <div class="alert alert-warning">
@@ -132,7 +96,5 @@
                 </div>
             </div>
         @endif
-
     </div>
 </div>
-<!-- /.row -->
