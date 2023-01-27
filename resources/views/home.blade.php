@@ -1,4 +1,5 @@
 @extends('layouts.app')
+@include('admin-lte/flash')
 
 @section('content')
     <div class="container">

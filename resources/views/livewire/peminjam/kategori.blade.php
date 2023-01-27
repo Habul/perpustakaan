@@ -1,5 +1,5 @@
 <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top shadow">
-    <div class="container">
+    <div class="container-fluid">
         <a class="navbar-brand" href="{{ url('/') }}">
             {{ config('app.name', 'Laravel') }}
         </a>
@@ -8,26 +8,27 @@
             <span class="navbar-toggler-icon"></span>
         </button>
 
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <div class="collapse navbar-collapse order-3" id="navbarSupportedContent">
             <!-- Left Side Of Navbar -->
-            <ul class="navbar-nav mr-auto">
-                <li class="nav-item dropdown">
-                    <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
-                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                        Kategori
-                    </a>
-
-                    <div class="dropdown-menu dropdown-menu-left" aria-labelledby="navbarDropdown"
-                        style="cursor: pointer">
-                        <a class="dropdown-item" wire:click="semuaKategori">Semua Kategori</a>
-                        <div class="dropdown-divider"></div>
-                        @foreach ($kategori as $item)
-                            <a class="dropdown-item"
-                                wire:click="pilihKategori({{ $item->id }})">{{ $item->nama }}</a>
-                        @endforeach
-                    </div>
-                </li>
-            </ul>
+            @if (!request()->is('login', 'register', 'password/reset'))
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item dropdown">
+                        <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
+                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                            Kategori
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-left" aria-labelledby="navbarDropdown"
+                            style="cursor: pointer">
+                            <a class="dropdown-item" wire:click="semuaKategori">Semua Kategori</a>
+                            <div class="dropdown-divider"></div>
+                            @foreach ($kategori as $item)
+                                <a class="dropdown-item"
+                                    wire:click="pilihKategori({{ $item->id }})">{{ $item->nama }}</a>
+                            @endforeach
+                        </div>
+                    </li>
+                </ul>
+            @endif
 
             <!-- Right Side Of Navbar -->
             <ul class="navbar-nav ml-auto">

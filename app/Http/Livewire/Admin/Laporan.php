@@ -3,7 +3,6 @@
 namespace App\Http\Livewire\Admin;
 
 use App\Models\Peminjaman;
-use Carbon\Carbon;
 use Livewire\Component;
 use Livewire\WithPagination;
 
@@ -26,5 +25,9 @@ class Laporan extends Component
         return view('livewire.admin.laporan', [
             'laporan' => $laporan,
         ]);
+    }
+
+    public function show()
+    {
     }
 }

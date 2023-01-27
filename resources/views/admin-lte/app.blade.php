@@ -6,7 +6,7 @@
     @livewireStyles
 </head>
 
-<body class="hold-transition sidebar-mini layout-fixed layout-navbar-fixed">
+<body class="hold-transition sidebar-mini layout-fixed layout-navbar-fixed text-sm">
     <div class="wrapper">
 
         @include('admin-lte/preloader')

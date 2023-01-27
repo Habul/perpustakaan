@@ -1,6 +1,7 @@
 @extends('admin-lte/app')
 @section('title', 'Dashboard')
 @section('active-dashboard', 'active')
+@include('admin-lte/flash')
 
 @section('content')
     <div class="row">

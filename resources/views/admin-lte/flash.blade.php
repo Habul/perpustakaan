@@ -1,10 +1,15 @@
 @if (session('sukses'))
-    <div class="alert alert-success">
-        {{ session('sukses') }}
-    </div>
+    <script>
+        toastr.success('{{ session('sukses') }}');
+    </script>
 @endif
 @if (session('gagal'))
-    <div class="alert alert-danger">
-        {{ session('gagal') }}
-    </div>
+    <script>
+        toastr.error('{{ session('gagal') }}');
+    </script>
+@endif
+@if (session('info'))
+    <script>
+        toastr.info('{{ session('info') }}');
+    </script>
 @endif
