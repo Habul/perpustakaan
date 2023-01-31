@@ -24,7 +24,7 @@ class Keranjang extends Component
             redirect('/');
         } else {
             $detail_peminjaman->delete();
-            session()->flash('sukses', 'Data berhasil dihapus');
+            session()->flash('infoo', 'Data berhasil dihapus');
             $this->emit('kurangiKeranjang');
         }
     }
@@ -36,7 +36,7 @@ class Keranjang extends Component
             $detail_peminjaman->delete();
         }
         $keranjang->delete();
-        session()->flash('sukses', 'Data berhasil dihapus');
+        session()->flash('infoo', 'Data berhasil dihapus');
         redirect('/');
     }
 
@@ -50,7 +50,7 @@ class Keranjang extends Component
             'tanggal_kembali' => Carbon::create($this->tanggal_pinjam)->addDays(10)
         ]);
 
-        session()->flash('sukses', 'Buku berhasil dipinjam');
+        session()->flash('infoo', 'Buku berhasil dipinjam');
     }
 
     public function render()

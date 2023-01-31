@@ -74,12 +74,12 @@ class Buku extends Component
                         ]);
 
                         $this->emit('tambahKeranjang');
-                        session()->flash('sukses', 'Buku berhasil ditambahkan ke dalam keranjang');
+                        session()->flash('infoo', 'Buku berhasil ditambahkan ke dalam keranjang');
                     } else {
 
                         // buku tidak boleh sama
                         if ($peminjaman_lama[0]->buku_id == $buku->id) {
-                            session()->flash('gagal', 'Buku tidak boleh sama');
+                            session()->flash('gagall', 'Buku tidak boleh sama');
                         } else {
 
                             DetailPeminjaman::create([
@@ -88,15 +88,15 @@ class Buku extends Component
                             ]);
 
                             $this->emit('tambahKeranjang');
-                            session()->flash('sukses', 'Buku berhasil ditambahkan ke dalam keranjang');
+                            session()->flash('infoo', 'Buku berhasil ditambahkan ke dalam keranjang');
                         }
                     }
                 }
             } else {
-                session()->flash('gagal', 'Role user anda bukan peminjam');
+                session()->flash('gagall', 'Role user anda bukan peminjam');
             }
         } else {
-            session()->flash('gagal', 'Anda harus login terlebih dahulu');
+            session()->flash('gagall', 'Anda harus login terlebih dahulu');
             redirect('/login');
         }
     }

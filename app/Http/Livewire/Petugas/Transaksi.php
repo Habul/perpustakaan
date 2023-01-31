@@ -74,18 +74,6 @@ class Transaksi extends Component
         session()->flash('sukses', 'Buku berhasil dikembalikan.');
     }
 
-    public function print(Peminjaman $peminjaman)
-    {
-        return view('livewire.petugas.print', [
-            'kode_pinjam' => $peminjaman->kode_pinjam,
-            'name' => $peminjaman->user->name,
-            'kelas' => $peminjaman->user->kelas,
-            'buku' => $peminjaman->detail_peminjaman->judul,
-            'tanggal_pinjam' => $peminjaman->tanggal_pinjam,
-            'tanggal_kembali' => $peminjaman->tanggal_kembali,
-        ]);
-    }
-
     public function render()
     {
         if ($this->search) {

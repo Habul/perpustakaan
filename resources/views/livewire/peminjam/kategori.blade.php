@@ -43,7 +43,7 @@
                 @else
                     @if ($count > 0)
                         <li class="nav-item">
-                            <a class="nav-link" href="/keranjang">Keranjang <span
+                            <a class="nav-link @yield('menu-keranjang-active')" href="/keranjang">Keranjang <span
                                     class="badge badge-primary">{{ $count }}</span></a>
                         </li>
                     @endif

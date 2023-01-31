@@ -74,7 +74,7 @@
                                     <td class="align-middle text-center">{{ $item->denda }}</td>
                                     <td class="align-middle text-center">
                                         @if ($item->status == 1)
-                                            <span class="badge bg-indigo">
+                                            <span class="badge bg-orange">
                                                 Belum Dipinjam</span>
                                         @elseif ($item->status == 2)
                                             <span class="badge bg-olive">Sedang Dipinjam</span>
@@ -85,16 +85,16 @@
                                     @if (!$selesai_dipinjam)
                                         <td class="align-middle text-center">
                                             @if ($item->status == 1)
-                                                <span wire:click="pinjam({{ $item->id }})" class="btn btn-success"
+                                                <span wire:click="pinjam({{ $item->id }})" class="btn bg-orange"
                                                     title="Pinjam">
                                                     <i class="fas fa-shopping-basket"></i></span>
                                             @elseif ($item->status == 2)
                                                 <span wire:click="kembali({{ $item->id }})" class="btn btn-primary"
                                                     title="Kembali">
                                                     <i class="fas fa-undo-alt"></i></span>
-                                                <span wire:click="print({{ $item->id }})"
-                                                    class="btn btn-warning mr-2" title="Print">
-                                                    <i class="fas fa-print"></i></span>
+                                                <a href="/transaksi/print/{{ $item->id }}"
+                                                    class="btn btn-warning mr-2" target="_blank" title="Print">
+                                                    <i class="fas fa-print"></i></a>
                                             @else
                                                 <span class="btn btn-success disabled">
                                                     <i class="fas fa-lock"></i></span>

@@ -13,3 +13,13 @@
         toastr.info('{{ session('info') }}');
     </script>
 @endif
+@if (session('infoo'))
+    <div class="alert alert-success">
+        {{ session('infoo') }}
+    </div>
+@endif
+@if (session('gagall'))
+    <div class="alert alert-danger">
+        {{ session('gagall') }}
+    </div>
+@endif

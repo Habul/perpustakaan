@@ -25,16 +25,70 @@
 <script src="/adminlte/dist/js/adminlte.js"></script>
 <script>
     $(function() {
-        $("#example1").DataTable({
-            "paging": false,
-            "lengthChange": true,
-            "searching": true,
-            "ordering": false,
-            "info": false,
-            "autoWidth": false,
+        var x = $('#index1').DataTable({
             "responsive": true,
-            "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
-        }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
+            "lengthChange": false,
+            "autoWidth": false,
+            "columnDefs": [{
+                "searchable": false,
+                "orderable": false,
+                "targets": 0
+            }],
+            "order": [],
+            dom: "<'row'<'col-sm-12 col-md-6'l><'col-sm-12 col-md-6'f>>" +
+                "<'row'<'col-sm-12'tr>>" +
+                "<'row'<'col-sm-12 col-md-5'i><'col-sm-12 col-md-7'p>>",
+            "buttons": [{
+                    extend: 'copyHtml5',
+                    filename: 'Download',
+                    footer: true,
+                    exportOptions: {
+                        columns: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
+                        orthogonal: 'export',
+                    },
+                },
+                {
+                    extend: 'excelHtml5',
+                    filename: 'Download',
+                    footer: true,
+                    exportOptions: {
+                        columns: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
+                        orthogonal: 'export'
+                    },
+                },
+                {
+                    extend: 'csvHtml5',
+                    filename: 'Download',
+                    footer: true,
+                    exportOptions: {
+                        columns: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
+                        orthogonal: 'export'
+                    },
+                },
+                {
+                    extend: 'pdfHtml5',
+                    filename: 'Download',
+                    footer: true,
+                    exportOptions: {
+                        columns: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
+                        orthogonal: 'export',
+                        modifier: {
+                            orientation: 'landscape'
+                        },
+                    },
+                }, 'colvis'
+            ],
+        });
+
+        x.on('order.dt search.dt', function() {
+            x.column(0, {
+                search: 'applied',
+                order: 'applied'
+            }).nodes().each(function(cell, j) {
+                cell.innerHTML = j + 1;
+            }).buttons().container().appendTo('#index1_wrapper .col-md-6:eq(0)');
+        }).draw();
+
         $('#example2').DataTable({
             "paging": false,
             "lengthChange": true,

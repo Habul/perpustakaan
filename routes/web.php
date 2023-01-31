@@ -34,6 +34,7 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/buku', BukuController::class);
         Route::get('/transaksi', TransaksiController::class);
         Route::get('/chart', ChartController::class);
+        Route::get('/transaksi/print/{id}', [TransaksiController::class, 'print']);
     });
 
     // role peminjam

@@ -1,3 +1,5 @@
+@section('menu-keranjang-active', 'active')
+
 <div class="container">
     <div class="row">
         <div class="col-md-12">
@@ -8,18 +10,20 @@
     @include('admin-lte/flash')
 
     <div class="row">
-        <div class="col-md-12 mb-4">
-            <label for="tanggal_pinjam">Tanggal Pinjam</label>
-            <input wire:model="tanggal_pinjam" type="date" class="form-control" id="tanggal_pinjam">
-            @error('tanggal_pinjam')
-                <small class="text-danger">{{ $message }}</small>
-            @enderror
-        </div>
+        @if ($keranjang->status == '0' || $keranjang->status == '1')
+            <div class="col-md-12 mb-4">
+                <label for="tanggal_pinjam">Tanggal Pinjam</label>
+                <input wire:model="tanggal_pinjam" type="date" class="form-control" id="tanggal_pinjam">
+                @error('tanggal_pinjam')
+                    <small class="text-danger">{{ $message }}</small>
+                @enderror
+            </div>
+        @endif
     </div>
 
     <div class="row">
         <div class="col-md-12 mb-2">
-            @if ($keranjang->tanggal_pinjam)
+            @if ($keranjang->status == '0' || $keranjang->status == '1')
                 <strong>Tanggal Pinjam: {{ $keranjang->tanggal_pinjam }}</strong>
             @endif
             <strong class="float-right">Kode Pinjam : {{ $keranjang->kode_pinjam }}</strong>
@@ -36,9 +40,7 @@
                         <th>Penulis</th>
                         <th>Rak</th>
                         <th>Baris</th>
-                        {{-- @if (!$keranjang->tanggal_pinjam) --}}
                         <th>Aksi</th>
-                        {{-- @endif --}}
                     </tr>
                 </thead>
                 <tbody>
@@ -50,23 +52,26 @@
                             <td>{{ $item->buku->rak->rak }}</td>
                             <td>{{ $item->buku->rak->baris }}</td>
                             <td>
-                                {{-- @if (!$keranjang->tanggal_pinjam) --}}
-                                <button wire:click="hapus({{ $keranjang->id }}, {{ $item->id }})"
-                                    class="btn btn-sm btn-danger"><i class="fas fa-trash"></i></button>
-                                {{-- @endif --}}
+                                @if ($keranjang->status == '0' || $keranjang->status == '1')
+                                    <button wire:click="hapus({{ $keranjang->id }}, {{ $item->id }})"
+                                        class="btn btn-sm btn-danger"><i class="fas fa-trash"></i></button>
+                                @else
+                                    <button class="btn btn-sm btn-info" title="Sedang di pinjam"><i
+                                            class="fas fa-lock"></i></button>
+                                @endif
                             </td>
                         </tr>
                     @endforeach
                 </tbody>
             </table>
-            {{-- @if (!$keranjang->tanggal_pinjam) --}}
-            <div class="d-flex justify-content-around">
-                <button wire:click="hapusMasal" class="btn btn-sm btn-danger">
-                    <i class="fas fa-recycle"></i> Hapus Masal</button>
-                <button wire:click="pinjam({{ $keranjang->id }})" class="btn btn-sm btn-success">
-                    <i class="fas fa-shopping-basket"></i> Pinjam</button>
-                {{-- @endif --}}
-            </div>
+            @if ($keranjang->status == '0' || $keranjang->status == '1')
+                <div class="d-flex justify-content-around">
+                    <button wire:click="hapusMasal" class="btn btn-sm btn-danger">
+                        <i class="fas fa-recycle"></i> Hapus Masal</button>
+                    <button wire:click="pinjam({{ $keranjang->id }})" class="btn btn-sm btn-success">
+                        <i class="fas fa-shopping-basket"></i> Pinjam</button>
+                </div>
+            @endif
         </div>
     </div>
 </div>
