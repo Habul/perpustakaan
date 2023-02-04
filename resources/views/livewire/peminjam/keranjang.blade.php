@@ -10,7 +10,7 @@
     @include('admin-lte/flash')
 
     <div class="row">
-        @if ($keranjang->status == '0' || $keranjang->status == '1')
+        @if ($keranjang->status == '0')
             <div class="col-md-12 mb-4">
                 <label for="tanggal_pinjam">Tanggal Pinjam</label>
                 <input wire:model="tanggal_pinjam" type="date" class="form-control" id="tanggal_pinjam">
@@ -23,7 +23,7 @@
 
     <div class="row">
         <div class="col-md-12 mb-2">
-            @if ($keranjang->status == '0' || $keranjang->status == '1')
+            @if ($keranjang->status == '0' || $keranjang->status == '1' || $keranjang->status == '2')
                 <strong>Tanggal Pinjam: {{ $keranjang->tanggal_pinjam }}</strong>
             @endif
             <strong class="float-right">Kode Pinjam : {{ $keranjang->kode_pinjam }}</strong>
@@ -56,7 +56,7 @@
                                     <button wire:click="hapus({{ $keranjang->id }}, {{ $item->id }})"
                                         class="btn btn-sm btn-danger"><i class="fas fa-trash"></i></button>
                                 @else
-                                    <button class="btn btn-sm btn-info" title="Sedang di pinjam"><i
+                                    <button class="btn btn-sm btn-warning" title="Sedang di pinjam"><i
                                             class="fas fa-lock"></i></button>
                                 @endif
                             </td>

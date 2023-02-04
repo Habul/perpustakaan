@@ -24,12 +24,12 @@
                 </div>
             </section>
         </div>
+        @include('admin-lte/logout')
         @include('admin-lte/footer')
 
         <aside class="control-sidebar control-sidebar-dark">
         </aside>
     </div>
-
     @include('admin-lte/javascript')
     @yield('script')
     @livewireScripts

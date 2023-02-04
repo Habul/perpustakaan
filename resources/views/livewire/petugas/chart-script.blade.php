@@ -16,10 +16,16 @@
                     @endforeach
                 ],
                 backgroundColor: '#f012be',
-                borderWidth: 1
+                borderColor: '#27ae60',
+                pointRadius: false,
+                pointColor: '#27ae60',
+                pointStrokeColor: '#c1c7d1',
+                pointHighlightFill: '#fff',
+                pointHighlightStroke: 'rgba(220,220,220,1)',
             }]
         },
         options: {
+            responsive: true,
             events: ['mouseout', 'touchstart', 'touchmove'],
             scales: {
                 y: {
@@ -39,10 +45,16 @@
                     label: 'Selesai Dipinjam',
                     data: count,
                     backgroundColor: '#f012be',
-                    borderWidth: 1
+                    borderColor: '#27ae60',
+                    pointRadius: false,
+                    pointColor: '#27ae60',
+                    pointStrokeColor: '#c1c7d1',
+                    pointHighlightFill: '#fff',
+                    pointHighlightStroke: 'rgba(220,220,220,1)',
                 }]
             },
             options: {
+                responsive: true,
                 events: ['mouseout', 'touchstart', 'touchmove'],
                 scales: {
                     y: {

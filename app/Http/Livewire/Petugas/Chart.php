@@ -17,6 +17,13 @@ class Chart extends Component
             $bulan = substr($this->bulan_tahun, -2);
             $tahun = substr($this->bulan_tahun, 0, 4);
 
+            // $mulai_dipinjam = Peminjaman::select(DB::raw('count(*) as count1, tanggal_pinjam'))
+            //     ->groupBy('tanggal_pinjam')
+            //     ->whereMonth('tanggal_pinjam', $bulan)
+            //     ->whereYear('tanggal_pinjam', $tahun)
+            //     ->where('status', 3)
+            //     ->get();
+
             $selesai_dipinjam = Peminjaman::select(DB::raw('count(*) as count, tanggal_pengembalian'))
                 ->groupBy('tanggal_pengembalian')
                 ->whereMonth('tanggal_pengembalian', $bulan)
@@ -25,6 +32,21 @@ class Chart extends Component
                 ->get();
 
             $hari_per_bulan = Carbon::parse($this->bulan_tahun)->daysInMonth;
+
+            // $tanggal_pinjam = [];
+            // $count1 = [];
+            // for ($i = 1; $i <= $hari_per_bulan; $i++) {
+            //     for ($j = 0; $j < count($mulai_dipinjam); $j++) {
+            //         if (substr($mulai_dipinjam[$j]->tanggal_pinjam, 0, 2) == $i) {
+            //             $tanggal_pinjam[$i] = substr($mulai_dipinjam[$j]->tanggal_pinjam, 0, 2);
+            //             $count1[$i] = $mulai_dipinjam[$j]->count1;
+            //             break;
+            //         } else {
+            //             $tanggal_pinjam[$i] = $i;
+            //             $count1[$i] = 0;
+            //         }
+            //     }
+            // }
 
             $tanggal_pengembalian = [];
             $count = [];

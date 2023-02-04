@@ -33,6 +33,19 @@
                          </p>
                      </a>
                  </li>
+                 @role('admin')
+                     <li class="nav-header">ADMIN</li>
+
+                     <li class="nav-item">
+                         <a href="/user" class="nav-link @yield('active-user')">
+                             <i class="nav-icon fas fa-users"></i>
+                             <p>
+                                 User
+                             </p>
+                         </a>
+                     </li>
+                 @endrole
+
                  <li class="nav-header">MASTER</li>
 
                  <li class="nav-item @yield('menu-open-data-master')">
@@ -94,18 +107,14 @@
                      </a>
                  </li>
 
-                 @role('admin')
-                     <li class="nav-header">ADMIN</li>
-
-                     <li class="nav-item">
-                         <a href="/user" class="nav-link @yield('active-user')">
-                             <i class="nav-icon fas fa-users"></i>
-                             <p>
-                                 User
-                             </p>
-                         </a>
-                     </li>
-                 @endrole
+                 <li class="nav-item">
+                     <a class="nav-link @yield('active-logout')" data-toggle="modal" data-target="#logout-form">
+                         <i class="nav-icon fas fa-sign-out-alt"></i>
+                         <p>
+                             Logout
+                         </p>
+                     </a>
+                 </li>
              </ul>
          </nav>
      </div>

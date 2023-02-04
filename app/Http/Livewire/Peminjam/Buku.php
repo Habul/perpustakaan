@@ -82,13 +82,25 @@ class Buku extends Component
                             session()->flash('gagall', 'Buku tidak boleh sama');
                         } else {
 
-                            DetailPeminjaman::create([
-                                'peminjaman_id' => $peminjaman_lama[0]->peminjaman_id,
-                                'buku_id' => $buku->id
-                            ]);
+                            $peminjaman_sama = DB::table('peminjaman')
+                                ->join('detail_peminjaman', 'peminjaman.id', '=', 'detail_peminjaman.peminjaman_id')
+                                ->where('peminjam_id', auth()->user()->id)
+                                ->where('status', 2)
+                                ->get();
 
-                            $this->emit('tambahKeranjang');
-                            session()->flash('infoo', 'Buku berhasil ditambahkan ke dalam keranjang');
+                            // buku tidak boleh di tambah jika sudah di pinjam
+                            if ($peminjaman_sama->count() != 0) {
+                                session()->flash('gagall', 'Buku tidak boleh di tambah jika sedang meminjam');
+                            } else {
+
+                                DetailPeminjaman::create([
+                                    'peminjaman_id' => $peminjaman_lama[0]->peminjaman_id,
+                                    'buku_id' => $buku->id
+                                ]);
+
+                                $this->emit('tambahKeranjang');
+                                session()->flash('infoo', 'Buku berhasil ditambahkan ke dalam keranjang');
+                            }
                         }
                     }
                 }

@@ -64,7 +64,7 @@
     </div>
     <!-- /.row -->
 
-    <div class="row my-4">
+    {{-- <div class="row my-4">
         <div class="col-md-12">
             <div class="card">
                 <div class="card-body">
@@ -72,7 +72,7 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> --}}
 
     <div class="row">
         <div class="col-md-6">
@@ -228,10 +228,10 @@
     </div>
 @endsection
 
-@section('script')
+{{-- @section('script')
     @include('admin-lte/script/chart')
 @endsection
 
 @section('chart-script')
     <livewire:petugas.chart-script></livewire:petugas.chart-script>
-@endsection
+@endsection --}}

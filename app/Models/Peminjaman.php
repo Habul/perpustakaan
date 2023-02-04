@@ -42,6 +42,6 @@ class Peminjaman extends Model
 
     public function getTanggalPengembalianAttribute($value)
     {
-        return $value = Carbon::create($value)->format('d-M-Y') ? $value : '-';
+        return $value = Carbon::create($value)->format('d-M-Y');
     }
 }
