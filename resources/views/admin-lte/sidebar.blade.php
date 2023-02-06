@@ -98,14 +98,15 @@
                              <p>Laporan</p>
                          </a>
                      </li>
+
+                     <li class="nav-item">
+                         <a href="/chart" class="nav-link @yield('active-chart')">
+                             <i class="nav-icon fas fa-chart-bar"></i>
+                             <p>Chart</p>
+                         </a>
+                     </li>
                  @endrole
 
-                 <li class="nav-item">
-                     <a href="/chart" class="nav-link @yield('active-chart')">
-                         <i class="nav-icon fas fa-chart-bar"></i>
-                         <p>Chart</p>
-                     </a>
-                 </li>
 
                  <li class="nav-item">
                      <a class="nav-link @yield('active-logout')" data-toggle="modal" data-target="#logout-form">

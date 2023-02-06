@@ -14,7 +14,7 @@
                         <form method="POST" action="{{ route('login') }}">
                             @csrf
 
-                            <div class="form-group row">
+                            <div class="form-group row mt-1">
                                 <label for="email"
                                     class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
 
@@ -34,12 +34,10 @@
                             <div class="form-group row">
                                 <label for="password"
                                     class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
-
                                 <div class="col-md-6">
                                     <input id="password" type="password"
                                         class="form-control @error('password') is-invalid @enderror" name="password"
                                         required autocomplete="current-password">
-
                                     @error('password')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>
@@ -51,32 +49,27 @@
                             <div class="form-group row">
                                 <div class="col-md-6 offset-md-4">
                                     <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" name="remember" id="remember"
-                                            {{ old('remember') ? 'checked' : '' }}>
-
-                                        <label class="form-check-label" for="remember">
-                                            {{ __('Remember Me') }}
+                                        <label class="form-check-label" for="show">
+                                            <input class="form-check-input" type="checkbox" id="show">
+                                            {{ __('Show password') }}
                                         </label>
                                     </div>
                                 </div>
                             </div>
 
-                            <div class="form-group row mb-0">
+                            <div class="form-group row mb-2">
                                 <div class="col-md-8 offset-md-4">
                                     <button type="submit" class="btn btn-primary">
                                         {{ __('Login') }}
+                                        <i class="fas fa-sign-in-alt"></i>
                                     </button>
                                     @if (Route::has('register'))
                                         <a class="btn btn-warning" href="{{ route('register') }}">
                                             {{ __('Register') }}
+                                            <i class="fas fa-address-card"></i>
                                         </a>
                                     @endif
                                     <br />
-                                    @if (Route::has('password.request'))
-                                        <a class="btn btn-link mt-2" href="{{ route('password.request') }}">
-                                            {{ __('Forgot Your Password?') }}
-                                        </a>
-                                    @endif
                                 </div>
                             </div>
                         </form>

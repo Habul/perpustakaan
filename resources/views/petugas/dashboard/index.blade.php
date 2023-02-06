@@ -209,6 +209,8 @@
                             <tr>
                                 <th style="width: 10px">#</th>
                                 <th>Kode Pinjam</th>
+                                <th>Nama</th>
+                                <th>kelas</th>
                                 <th>Tanggal Pinjam</th>
                             </tr>
                         </thead>
@@ -217,6 +219,8 @@
                                 <tr>
                                     <td>{{ $loop->iteration }}</td>
                                     <td>{{ $item->kode_pinjam }}</td>
+                                    <td>{{ $item->user->name }}</td>
+                                    <td>{{ $item->user->kelas }}</td>
                                     <td>{{ $item->tanggal_pinjam }}</td>
                                 </tr>
                             @endforeach
