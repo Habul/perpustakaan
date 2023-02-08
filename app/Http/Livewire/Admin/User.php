@@ -23,12 +23,14 @@ class User extends Component
 
     protected function rules()
     {
-        return [
-            'name' => 'required',
-            'email' => ['required', 'email', 'unique:App\Models\User,email'],
-            'password' => ['required', 'confirmed', Password::min(8)],
-            'password_confirmation' => 'required',
-        ];
+        return
+            [
+                'name' => 'required',
+                'email' => ['required', 'email', 'unique:App\Models\User,email'],
+                'kelas' => 'required',
+                'password' => ['required', 'confirmed', Password::min(8)],
+                'password_confirmation' => 'required',
+            ];
     }
 
     public function admin()
