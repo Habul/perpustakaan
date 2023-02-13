@@ -92,7 +92,8 @@
 
                             <div class="form-group row mb-1 mt-2">
                                 <div class="col-md-6 offset-md-4">
-                                    <button type="submit" class="btn btn-primary">
+                                    <button type="submit" class="btn btn-warning">
+                                        <i class="fas fa-check-circle"></i>
                                         {{ __('Register') }}
                                     </button>
                                 </div>

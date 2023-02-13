@@ -1,0 +1,23 @@
+extract file zip
+Buka di kode editor
+- Install composer
+- composer install
+- Copy .Env
+- copy .env.example menjadi .env
+Buka Web Server
+- Buat database di localhost
+- nama database : perpustakaan_laravel_8
+Setting database di .env
+- DB_PORT=3306
+- DB_DATABASE=perpustakaan_laravel_8
+- DB_USERNAME=root
+- DB_PASSWORD=
+Generate key
+- php artisan key:generate
+Jalankan migrate dan seeder
+- php artisan migrate --seed
+- Buat Storage Link
+- php artisan storage:link
+Buat Folder buku di public dan copy asetnya
+Jalankan Serve
+php artisan serve
