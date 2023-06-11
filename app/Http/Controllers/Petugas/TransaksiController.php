@@ -27,4 +27,13 @@ class TransaksiController extends Controller
             'Print' => $print,
         ]);
     }
+
+    public function print_denda(Request $request)
+    {
+        $print = Peminjaman::where('id', $request->id)->get();
+
+        return view('livewire.petugas.print_denda', [
+            'Print' => $print,
+        ]);
+    }
 }

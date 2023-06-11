@@ -35,6 +35,7 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/transaksi', TransaksiController::class);
         Route::get('/chart', ChartController::class);
         Route::get('/transaksi/print/{id}', [TransaksiController::class, 'print']);
+        Route::get('/transaksi/print_denda/{id}', [TransaksiController::class, 'print_denda']);
     });
 
     // role peminjam

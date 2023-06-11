@@ -2,7 +2,7 @@
 <html>
 
 <head>
-    <title>Cetak Butki Peminjaman</title>
+    <title>Denda hilang buku</title>
 </head>
 
 <body>
@@ -36,7 +36,7 @@
 
     <div class="card">
         <div class="card-header">
-            Bukti Peminjaman Buku Perpustakaan
+            Denda Hilang Buku
         </div>
         <div class="card-body">
             <div class="container">
@@ -53,32 +53,21 @@
                             <td>{{ $item->user->name }}</td>
                         </tr>
                         <tr>
-                            <td>Buku</td>
-                            <td>:</td>
-                            <td>
-                                @foreach ($item->detail_peminjaman as $detail_peminjaman)
-                                    {{ $detail_peminjaman->buku->judul }},
-                                @endforeach
-                            </td>
-                        </tr>
-                        <tr>
                             <td>Tanggal Pinjam</td>
                             <td>:</td>
                             <td>{{ $item->tanggal_pinjam }}</td>
                         </tr>
                         <tr>
-                            <td>Tanggal Kembali</td>
+                            <td>Denda</td>
                             <td>:</td>
-                            <td>{{ $item->tanggal_kembali }}</td>
+                            <td>{{ $item->denda_hilang }}</td>
                         </tr>
                     @endforeach
                 </table>
             </div>
         </div>
         <div class="card-footer">
-            <b>Note : Jika mengembalikan buku melewati batas hari, akan terkena denda per 1 hari Rp 500
-                & denda kehilangan 1 buku Rp 30000
-            </b>
+            <b>Note : Harap di cek kembali bukunya agar tidak terjadi kehilangan buku kembali</b>
         </div>
     </div>
 

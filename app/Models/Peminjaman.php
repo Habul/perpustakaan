@@ -11,7 +11,7 @@ class Peminjaman extends Model
     use HasFactory;
 
     protected $table = 'peminjaman';
-    protected $fillable = ['kode_pinjam', 'peminjam_id', 'petugas_pinjam', 'petugas_kembali', 'status', 'denda', 'tanggal_pinjam', 'tanggal_kembali', 'tanggal_pengembalian'];
+    protected $fillable = ['kode_pinjam', 'peminjam_id', 'petugas_pinjam', 'petugas_kembali', 'status', 'denda', 'denda_hilang', 'tanggal_pinjam', 'tanggal_kembali', 'tanggal_pengembalian'];
 
     // relation
     public function detail_peminjaman()
@@ -26,6 +26,11 @@ class Peminjaman extends Model
 
     // accesor
     public function getDendaAttribute($value)
+    {
+        return $value ? "Rp. {$value}" : '-';
+    }
+
+    public function getDendaHilangAttribute($value)
     {
         return $value ? "Rp. {$value}" : '-';
     }

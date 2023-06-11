@@ -2,6 +2,9 @@
     <div class="col-12">
 
         @include('admin-lte/flash')
+        @include('petugas/transaksi/edit')
+        @include('petugas/transaksi/hilang')
+        @include('petugas/transaksi/submit')
 
         <div class="btn-group mb-3">
             <button wire:click="format" class="btn btn-sm bg-teal mr-2"><i class="fas fa-book-open"></i> Semua</button>
@@ -42,7 +45,8 @@
                                 <th>Lokasi</th>
                                 <th>Tanggal Pinjam</th>
                                 <th>Tanggal Kembali</th>
-                                <th>Denda</th>
+                                <th>Denda Telat</th>
+                                <th>Denda Buku</th>
                                 <th>Status</th>
                                 @if (!$selesai_dipinjam)
                                     <th width="13%">Aksi</th>
@@ -72,6 +76,7 @@
                                     <td class="align-middle text-center">{{ $item->tanggal_pinjam }}</td>
                                     <td class="align-middle text-center">{{ $item->tanggal_kembali }}</td>
                                     <td class="align-middle text-center">{{ $item->denda }}</td>
+                                    <td class="align-middle text-center">{{ $item->denda_hilang }}</td>
                                     <td class="align-middle text-center">
                                         @if ($item->status == 1)
                                             <span class="badge bg-orange">
@@ -85,16 +90,23 @@
                                     @if (!$selesai_dipinjam)
                                         <td class="align-middle text-center">
                                             @if ($item->status == 1)
-                                                <span wire:click="pinjam({{ $item->id }})" class="btn bg-orange"
+                                                <a wire:click="submit({{ $item->id }})" class="btn bg-orange"
                                                     title="Pinjam">
-                                                    <i class="fas fa-shopping-basket"></i></span>
+                                                    <i class="fas fa-shopping-basket"></i></a>
                                             @elseif ($item->status == 2)
-                                                <span wire:click="kembali({{ $item->id }})" class="btn btn-primary"
-                                                    title="Kembali">
-                                                    <i class="fas fa-undo-alt"></i></span>
-                                                <a href="/transaksi/print/{{ $item->id }}"
-                                                    class="btn btn-warning mr-2" target="_blank" title="Print">
-                                                    <i class="fas fa-print"></i></a>
+                                                <a class="btn btn-info" wire:click="edit({{ $item->id }})"
+                                                    title="kembali ?"><i class="fas fa-undo-alt"></i>
+                                                </a>
+                                                @if ($item->hilang != 0)
+                                                    <a href="/transaksi/print_denda/{{ $item->id }}"
+                                                        class="btn btn-danger mr-2" target="_blank" title="Print">
+                                                        <i class="fas fa-print"></i></a>
+                                                @else
+                                                    <a class="btn btn-warning" wire:click="hilang({{ $item->id }})"
+                                                        title="Buku Hilang ?">
+                                                        <i class="fas fa-exclamation-triangle"></i>
+                                                    </a>
+                                                @endif
                                             @else
                                                 <span class="btn btn-success disabled">
                                                     <i class="fas fa-lock"></i></span>
