@@ -28,10 +28,10 @@
                          </div>
                          <div class="col-md-6">
                              <div class="form-group">
-                                 <label for="stok">Stok</label>
-                                 <input wire:model="stok" type="number" class="form-control" id="stok"
+                                 <label for="total">total</label>
+                                 <input wire:model="total" type="number" class="form-control" id="total"
                                      min="1">
-                                 @error('stok')
+                                 @error('total')
                                      <small class="text-danger">{{ $message }}</small>
                                  @enderror
                              </div>

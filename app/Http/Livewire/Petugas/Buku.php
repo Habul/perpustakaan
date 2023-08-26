@@ -21,21 +21,21 @@ class Buku extends Component
     public $create, $edit, $delete, $show;
     public $kategori, $rak, $penerbit;
     public $kategori_id, $rak_id, $penerbit_id, $baris;
-    public $judul, $stok, $penulis, $sampul, $buku_id, $search;
+    public $judul, $stok, $total, $dipinjam, $penulis, $sampul, $buku_id, $search;
 
     protected $rules = [
-        'judul' => 'required',
-        'penulis' => 'required',
-        'stok' => 'required|numeric|min:1',
-        'sampul' => 'required|image|max:1024',
+        'judul'       => 'required',
+        'penulis'     => 'required',
+        'total'       => 'required|numeric|min:1',
+        'sampul'      => 'required|image|max:1024',
         'kategori_id' => 'required|numeric|min:1',
-        'rak_id' => 'required|numeric|min:1',
+        'rak_id'      => 'required|numeric|min:1',
         'penerbit_id' => 'required|numeric|min:1',
     ];
 
     protected $validationAttributes = [
         'kategori_id' => 'kategori',
-        'rak_id' => 'rak',
+        'rak_id'      => 'rak',
         'penerbit_id' => 'penerbit',
     ];
 
@@ -48,7 +48,7 @@ class Buku extends Component
     {
         $this->format();
 
-        $this->create = true;
+        $this->create   = true;
         $this->kategori = Kategori::all();
         $this->penerbit = Penerbit::all();
     }
@@ -60,14 +60,16 @@ class Buku extends Component
         $this->sampul = $this->sampul->store('buku', 'public');
 
         ModelsBuku::create([
-            'sampul' => $this->sampul,
-            'judul' => $this->judul,
-            'penulis' => $this->penulis,
-            'stok' => $this->stok,
+            'sampul'      => $this->sampul,
+            'judul'       => $this->judul,
+            'penulis'     => $this->penulis,
+            'total'       => $this->total,
+            'stok'        => $this->total,
+            'dipinjam'    => '0',
             'kategori_id' => $this->kategori_id,
-            'rak_id' => $this->rak_id,
+            'rak_id'      => $this->rak_id,
             'penerbit_id' => $this->penerbit_id,
-            'slug' => Str::slug($this->judul)
+            'slug'        => Str::slug($this->judul)
         ]);
 
         session()->flash('sukses', 'Data berhasil ditambahkan.');
@@ -78,42 +80,48 @@ class Buku extends Component
     {
         $this->format();
 
-        $this->show = true;
-        $this->judul = $buku->judul;
-        $this->sampul = $buku->sampul;
-        $this->penulis = $buku->penulis;
-        $this->stok = $buku->stok;
+        $this->show     = true;
+        $this->judul    = $buku->judul;
+        $this->sampul   = $buku->sampul;
+        $this->penulis  = $buku->penulis;
+        $this->stok     = $buku->stok;
+        $this->dipinjam = $buku->dipinjam;
+        $this->total    = $buku->total;
         $this->kategori = $buku->kategori->nama;
         $this->penerbit = $buku->penerbit->nama;
-        $this->rak = $buku->rak->rak;
-        $this->baris = $buku->rak->baris;
+        $this->rak      = $buku->rak->rak;
+        $this->baris    = $buku->rak->baris;
     }
 
     public function edit(ModelsBuku $buku)
     {
         $this->format();
 
-        $this->edit = true;
-        $this->buku_id = $buku->id;
-        $this->judul = $buku->judul;
-        $this->penulis = $buku->penulis;
-        $this->stok = $buku->stok;
+        $this->edit        = true;
+        $this->buku_id     = $buku->id;
+        $this->judul       = $buku->judul;
+        $this->penulis     = $buku->penulis;
+        $this->stok        = $buku->stok;
+        $this->dipinjam    = $buku->dipinjam;
+        $this->total       = $buku->total;
         $this->kategori_id = $buku->kategori_id;
-        $this->rak_id = $buku->rak_id;
+        $this->rak_id      = $buku->rak_id;
         $this->penerbit_id = $buku->penerbit_id;
-        $this->kategori = Kategori::all();
-        $this->rak = Rak::where('kategori_id', $buku->kategori_id)->get();
-        $this->penerbit = Penerbit::all();
+        $this->kategori    = Kategori::all();
+        $this->rak         = Rak::where('kategori_id', $buku->kategori_id)->get();
+        $this->penerbit    = Penerbit::all();
     }
 
     public function update(ModelsBuku $buku)
     {
         $validasi = [
-            'judul' => 'required',
-            'penulis' => 'required',
-            'stok' => 'required|numeric|min:1',
+            'judul'       => 'required',
+            'penulis'     => 'required',
+            'stok'        => 'required|numeric',
+            'dipinjam'    => 'required|numeric',
+            'total'       => 'required|numeric|min:1',
             'kategori_id' => 'required|numeric|min:1',
-            'rak_id' => 'required|numeric|min:1',
+            'rak_id'      => 'required|numeric|min:1',
             'penerbit_id' => 'required|numeric|min:1',
         ];
 
@@ -131,14 +139,16 @@ class Buku extends Component
         }
 
         $buku->update([
-            'sampul' => $this->sampul,
-            'judul' => $this->judul,
-            'penulis' => $this->penulis,
-            'stok' => $this->stok,
+            'sampul'      => $this->sampul,
+            'judul'       => $this->judul,
+            'penulis'     => $this->penulis,
+            'stok'        => $this->stok,
+            'dipinjam'    => $this->dipinjam,
+            'total'       => $this->total,
             'kategori_id' => $this->kategori_id,
-            'rak_id' => $this->rak_id,
+            'rak_id'      => $this->rak_id,
             'penerbit_id' => $this->penerbit_id,
-            'slug' => Str::slug($this->judul)
+            'slug'        => Str::slug($this->judul)
         ]);
 
         session()->flash('sukses', 'Data berhasil diubah.');
@@ -149,9 +159,9 @@ class Buku extends Component
     {
         $this->format();
 
-        $this->delete = true;
+        $this->delete  = true;
         $this->buku_id = $buku->id;
-        $this->judul = $buku->judul;
+        $this->judul   = $buku->judul;
     }
 
     public function destroy(ModelsBuku $buku)
@@ -189,6 +199,8 @@ class Buku extends Component
         unset($this->judul);
         unset($this->sampul);
         unset($this->stok);
+        unset($this->dipinjam);
+        unset($this->total);
         unset($this->penulis);
         unset($this->kategori);
         unset($this->penerbit);

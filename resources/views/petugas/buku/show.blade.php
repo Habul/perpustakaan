@@ -50,19 +50,19 @@
                                          <td>{{ $baris == 0 ? 'none' : $baris }}</td>
                                      </tr>
                                      <tr>
-                                         <th>Total</th>
-                                         <td>:</td>
-                                         <td>{{ $stok }}</td>
-                                     </tr>
-                                     <tr>
                                          <th>Di Pinjam</th>
                                          <td>:</td>
-                                         <td>{{ $stok }}</td>
+                                         <td>{{ $dipinjam }}</td>
                                      </tr>
                                      <tr>
                                          <th>Sisa Stok</th>
                                          <td>:</td>
                                          <td>{{ $stok }}</td>
+                                     </tr>
+                                     <tr>
+                                         <th>Total</th>
+                                         <td>:</td>
+                                         <td>{{ $total }}</td>
                                      </tr>
                                  </tbody>
                              </table>
