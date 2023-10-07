@@ -43,10 +43,8 @@ class Buku extends Component
 
     public function keranjang(ModelsBuku $buku)
     {
-        // user harus login
         if (auth()->user()) {
 
-            // role peminjam
             if (auth()->user()->hasRole('peminjam')) {
 
                 $peminjaman_lama = DB::table('peminjaman')
@@ -55,12 +53,10 @@ class Buku extends Component
                     ->where('status', '!=', 3)
                     ->get();
 
-                // jumlah maksimal 3
                 if ($peminjaman_lama->count() == 3) {
                     session()->flash('gagal', 'Buku yang dipinjam maksimal 3');
                 } else {
 
-                    // peminjaman belum ada isinya
                     if ($peminjaman_lama->count() == 0) {
                         $peminjaman_baru = Peminjaman::create([
                             'kode_pinjam' => random_int(100000000, 999999999),
@@ -77,7 +73,6 @@ class Buku extends Component
                         session()->flash('infoo', 'Buku berhasil ditambahkan ke dalam keranjang');
                     } else {
 
-                        // buku tidak boleh sama
                         if ($peminjaman_lama[0]->buku_id == $buku->id) {
                             session()->flash('gagall', 'Buku tidak boleh sama');
                         } else {

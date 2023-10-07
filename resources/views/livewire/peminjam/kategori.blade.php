@@ -23,7 +23,8 @@
                             <div class="dropdown-divider"></div>
                             @foreach ($kategori as $item)
                                 <a class="dropdown-item"
-                                    wire:click="pilihKategori({{ $item->id }})">{{ $item->nama }}</a>
+                                    wire:click="pilihKategori({{ $item->id }})">{{ $item->nama }}
+                                </a>
                             @endforeach
                         </div>
                     </li>
