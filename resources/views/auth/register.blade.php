@@ -96,6 +96,12 @@
                                         <i class="fas fa-check-circle"></i>
                                         {{ __('Register') }}
                                     </button>
+                                    @if (Route::has('login'))
+                                        <a class="btn btn-info" href="{{ route('login') }}">
+                                            {{ __('Back to Login') }}
+                                            &nbsp;<i class="fas fa-undo-alt"></i>
+                                        </a>
+                                    @endif
                                 </div>
                             </div>
                         </form>
