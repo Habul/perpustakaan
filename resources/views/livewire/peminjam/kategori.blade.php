@@ -54,10 +54,10 @@
                             {{ Auth::user()->name }}
                         </a>
                         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                            {{-- @role('admin|petugas')
+                            @role('admin|petugas')
                                 <a class="dropdown-item" href="{{ url('dashboard') }}">
                                     <i class="nav-icon fas fa-tachometer-alt"></i> Dashboard</a>
-                            @endrole --}}
+                            @endrole
                             <a class="dropdown-item"" data-toggle="modal" data-target="#logout-form" role="button">
                                 <i class="fas fa-sign-out-alt"></i> Logout
                             </a>

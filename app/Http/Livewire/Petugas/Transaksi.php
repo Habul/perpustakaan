@@ -3,6 +3,8 @@
 namespace App\Http\Livewire\Petugas;
 
 use App\Models\Peminjaman;
+use App\Models\Buku as ModelsBuku;
+use App\Models\DetailPeminjaman;
 use Carbon\Carbon;
 use Livewire\Component;
 use Livewire\WithPagination;
@@ -12,8 +14,43 @@ class Transaksi extends Component
     use WithPagination;
     protected $paginationTheme = 'bootstrap';
 
-    public $belum_dipinjam, $sedang_dipinjam, $selesai_dipinjam, $search;
+    public $belum_dipinjam, $sedang_dipinjam, $selesai_dipinjam, $search, $create, $book, $peminjam_nama, $tgl_pinjam, $books;
     public $kode_pinjam, $name, $kelas, $buku, $tanggal_pinjam, $tanggal_kembali, $tanggal_pengembalian, $pinjam_id, $edit, $hilang, $submit, $denda_hilang;
+
+    protected $rules = [
+        'peminjam_nama' => 'required',
+        'book'          => 'required',
+        'tgl_pinjam'    => 'required',
+    ];
+
+    public function create()
+    {
+        $this->format();
+        $this->create = true;
+        $this->books = ModelsBuku::all();
+    }
+
+    public function store()
+    {
+        $this->validate();
+
+        $peminjaman_baru = Peminjaman::create([
+            'kode_pinjam'     => random_int(100000000, 999999999),
+            'petugas_pinjam'  => auth()->user()->id,
+            'peminjam_nama'   => $this->peminjam_nama,
+            'tanggal_pinjam'  => $this->tgl_pinjam,
+            'tanggal_kembali' => Carbon::create($this->tgl_pinjam)->addDays(10),
+            'status'          => 1
+        ]);
+
+        DetailPeminjaman::create([
+            'peminjaman_id' => $peminjaman_baru->id,
+            'buku_id'       => $this->book
+        ]);
+
+        session()->flash('sukses', 'Data peminjam berhasil ditambahkan.');
+        $this->format();
+    }
 
     public function belumDipinjam()
     {
@@ -144,9 +181,13 @@ class Transaksi extends Component
 
     public function format()
     {
-        $this->sedang_dipinjam = false;
-        $this->belum_dipinjam = false;
+        $this->sedang_dipinjam  = false;
+        $this->belum_dipinjam   = false;
         $this->selesai_dipinjam = false;
+        unset($this->create);
+        unset($this->peminjam_nama);
+        unset($this->tgl_pinjam);
+        unset($this->book);
         unset($this->edit);
         unset($this->hilang);
         unset($this->submit);

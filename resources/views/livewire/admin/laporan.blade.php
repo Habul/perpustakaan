@@ -21,13 +21,14 @@
                             <th width="4%">No</th>
                             <th>Kode Pinjam</th>
                             <th>Nama</th>
-                            <th>Kelas</th>
+                            {{-- <th>Kelas</th> --}}
                             <th>Buku</th>
                             <th>Lokasi</th>
                             <th>Tanggal Pinjam</th>
                             <th>Tanggal Kembali</th>
                             <th>Pengembalian</th>
-                            <th>Denda</th>
+                            <th>Denda Telat</th>
+                            <th>Denda Buku</th>
                             <th>Status</th>
                         </tr>
                     </thead>
@@ -36,8 +37,8 @@
                             <tr>
                                 <td class="align-middle text-center"></td>
                                 <td class="align-middle">{{ $item->kode_pinjam }}</td>
-                                <td class="align-middle text-center">{{ $item->user->name }}</td>
-                                <td class="align-middle text-center">{{ $item->user->kelas }}</td>
+                                <td class="align-middle text-center">{{ ucwords($item->peminjam_nama) }}</td>
+                                {{-- <td class="align-middle text-center">{{ $item->user->kelas }}</td> --}}
                                 <td class="align-middle">
                                     <ul>
                                         @foreach ($item->detail_peminjaman as $detail_peminjaman)
@@ -62,6 +63,7 @@
                                     @endempty
                                 </td>
                                 <td class="align-middle text-center">{{ $item->denda }}</td>
+                                <td class="align-middle text-center">{{ $item->denda_hilang }}</td>
                                 <td class="align-middle text-center">
                                     @if ($item->status == 1)
                                         <span class="badge bg-indigo">

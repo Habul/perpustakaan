@@ -1,6 +1,6 @@
 /*
 SQLyog Ultimate v13.1.1 (64 bit)
-MySQL - 10.5.19-MariaDB-cll-lve : Database - u895896720_perpus
+MySQL - 5.7.35-log : Database - laravel8_perpustakaan
 *********************************************************************
 */
 
@@ -12,9 +12,9 @@ MySQL - 10.5.19-MariaDB-cll-lve : Database - u895896720_perpus
 /*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
-CREATE DATABASE /*!32312 IF NOT EXISTS*/`u895896720_perpus` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci */;
+CREATE DATABASE /*!32312 IF NOT EXISTS*/`laravel8_perpustakaan` /*!40100 DEFAULT CHARACTER SET latin1 */;
 
-USE `u895896720_perpus`;
+USE `laravel8_perpustakaan`;
 
 /*Table structure for table `buku` */
 
@@ -22,67 +22,33 @@ DROP TABLE IF EXISTS `buku`;
 
 CREATE TABLE `buku` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
-  `judul` varchar(255) NOT NULL,
-  `slug` varchar(255) NOT NULL,
-  `sampul` varchar(255) NOT NULL,
-  `penulis` varchar(255) NOT NULL,
+  `judul` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `slug` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `sampul` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `penulis` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `penerbit_id` bigint(20) unsigned NOT NULL,
   `kategori_id` bigint(20) unsigned NOT NULL,
   `rak_id` bigint(20) unsigned NOT NULL,
   `stok` int(11) NOT NULL,
+  `dipinjam` int(11) NOT NULL DEFAULT '0',
+  `total` int(11) NOT NULL DEFAULT '0',
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=47 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 /*Data for the table `buku` */
 
-insert  into `buku`(`id`,`judul`,`slug`,`sampul`,`penulis`,`penerbit_id`,`kategori_id`,`rak_id`,`stok`,`created_at`,`updated_at`) values 
-(1,'Bintang','bintang','buku/Sampul_novel_Bintang.jpeg','Tere liye',2,2,2,10,'2023-01-20 16:08:06','2023-02-20 19:17:44'),
-(2,'Matahari','matahari','buku/Sampul_novel_Matahari.jpeg','Tere liye',3,2,3,10,'2023-01-20 16:08:06','2023-01-21 23:59:10'),
-(3,'Tentang kamu','tentang-kamu','buku/Tentang_Kamu_sampul.jpeg','Tere liye',2,2,4,11,'2023-01-20 16:08:06','2023-01-31 13:53:47'),
-(4,'Gusdur','gusdur','buku/gusdur.jpg','Greg borton',2,3,7,10,'2023-01-20 16:08:06','2023-01-31 13:53:47'),
-(5,'Habibie','habibie','buku/habibie.jpg','Raden toto sugiharto',2,3,8,10,'2023-01-20 16:08:06','2023-01-31 13:53:47'),
-(6,'Naruto volume 58','naruto-volume-58','buku/naruto-58.jpg','Masashi kishimoto',3,6,12,10,'2023-01-20 16:08:06','2023-02-20 17:29:07'),
-(7,'Naruto volume 71','naruto-volume-71','buku/naruto-71.jpg','Masashi kishimoto',3,6,13,9,'2023-01-20 16:08:06','2023-02-20 19:17:44'),
-(8,'Selalu berhemat energi','selalu-berhemat-energi','buku/h0LE6EtQFcZMbrMy6R2gSD7ZsDVmwAikuRk5roNg.webp','Kurikulum',4,7,17,10,'2023-01-22 00:38:00','2023-02-20 19:17:41'),
-(9,'Kewajiban dan Hakku','kewajiban-dan-hakku','buku/psBlHsk9KkIHxEqEsbDlwbQAj9vHsOXztuN6Rnt0.jpg','Kurikulum',4,7,17,5,'2023-01-22 00:48:17','2023-02-20 19:17:44'),
-(11,'Sangkuriang','sangkuriang','buku/jpr54hjXT3GV7E8pX5MvmTrSfiFSCkr7wVrVOtCf.jpg','Moch Sanaeni',5,8,19,5,'2023-02-21 14:46:49','2023-02-21 14:46:49'),
-(12,'Cerita rakyat nusantara','cerita-rakyat-nusantara','buku/nt5FGd4rNRJXmgYuFMOqwU2cG1kpnT1o8z24Vo6P.jpg','Faza',2,8,19,5,'2023-02-21 14:47:41','2023-02-21 14:47:41'),
-(13,'Kumpulan cerita rakyat populer','kumpulan-cerita-rakyat-populer','buku/8BAZKg7H89jMlXKB9aUnquVZfD0tuGqf4sCW6Dzv.jpg','Lisdy rahayu',2,8,19,3,'2023-02-21 14:48:48','2023-02-21 14:48:48'),
-(14,'Aneka hewan laut','aneka-hewan-laut','buku/34WdYKnfDHE74mrv43K9ZRP7O7coiBlXtSEI3qCi.jpg','Iwak abqary',4,8,19,3,'2023-02-21 14:49:40','2023-02-21 14:49:40'),
-(15,'Ketika jago tak bisa berkokok','ketika-jago-tak-bisa-berkokok','buku/OudeVp2gC1NrIDX3UoLHdNAqQHVHrrWBQu0u1sN2.jpg','Bambang joko susilo',4,8,19,3,'2023-02-21 14:50:32','2023-02-21 14:50:32'),
-(16,'Hutan cahaya','hutan-cahaya','buku/Pn5maPVBAkbz56fwAbJaStUaoKlKmqAhdcarTg88.jpg','Ratih cahaya',4,8,19,3,'2023-02-21 14:52:00','2023-02-21 14:52:00'),
-(17,'Lebah si gudang madu','lebah-si-gudang-madu','buku/dtMSNHqfVjmyjoc4R1g7rNwRku6JCYjFXLDJD4LT.jpg','Bambang joko susilo',4,8,19,3,'2023-02-21 14:53:33','2023-02-21 14:53:33'),
-(18,'Keong juara lari','keong-juara-lari','buku/qe4oIb3uXbjV2mScymIIoNgyD00URGC2c87o52m5.jpg','Bambang joko susilo',6,8,19,3,'2023-02-21 14:58:25','2023-02-21 14:58:25'),
-(19,'Bungli si anak bunglon yang ingin tau','bungli-si-anak-bunglon-yang-ingin-tau','buku/1giXoeoxXFodqcMNDtOR9LPcVdnVlSVJreegQqjZ.jpg','Bambang joko susilo',6,8,19,4,'2023-02-21 14:59:52','2023-02-21 14:59:52'),
-(20,'Semut dan kepompong','semut-dan-kepompong','buku/TE8EFhQZGZS5dLwAxiwH5qqHxDLR4oeG7ZgaaoZI.jpg','Duta buku',2,8,19,3,'2023-02-21 15:02:05','2023-02-21 15:02:05'),
-(21,'Gadis kecil penjaga bintang','gadis-kecil-penjaga-bintang','buku/0XY3DLCXGwLV2sTWx8lQCnhM4iOjtBXTQKdab6QO.jpg','Wikan satriati',4,8,19,5,'2023-02-21 15:18:54','2023-02-21 15:18:54'),
-(22,'Belalang dengan semut','belalang-dengan-semut','buku/AQ9UIOMns37r7HC0pFQqd4sNT7JytscoUrpr6mXx.jpg','Sulaiman zakaria',7,8,19,5,'2023-02-21 15:19:55','2023-02-21 15:19:55'),
-(23,'Dongeng hewan laut','dongeng-hewan-laut','buku/mJPSRUS408Ho5Jw00MQVLkfJAZPgvyCoezZ9h2QK.jpg','Liza erfiana',4,8,19,5,'2023-02-21 15:21:19','2023-02-21 15:21:19'),
-(24,'Dongeng kancil dan sahabat rimba','dongeng-kancil-dan-sahabat-rimba','buku/iwcO8QWmhkOWkof5vV6NkvuFYf5YcxUHWlKRLpB8.jpg','Gyatri',8,8,19,3,'2023-02-21 15:22:15','2023-02-21 15:22:15'),
-(25,'Beruang besar dan beruang kecil','beruang-besar-dan-beruang-kecil','buku/98XXRg3dez5xPdXu1c8SZSMACsRx6qBcbD1K8BbU.jpg','Kim young rain',2,8,19,2,'2023-02-21 15:24:21','2023-02-21 15:24:21'),
-(26,'Timun mas','timun-mas','buku/nAcLwZxfoeAsucYQ9IIlxqdKdgq5PSpoQeLFcAcZ.jpg','Buku kita',9,8,19,3,'2023-02-21 15:25:24','2023-02-21 15:25:24'),
-(27,'Cerita sang pembelajar','cerita-sang-pembelajar','buku/XSuHaS3Bxe5J2ysLrE7hjhZhShU5pFifch20z2Rp.png','Mediana S.Pd',2,8,19,10,'2023-02-21 15:26:39','2023-02-21 15:26:39'),
-(28,'Fabel persahabatan','fabel-persahabatan','buku/CBB6f2OsYy94Ho26jqZRW9zRNZK0jB1zQsx4KX5I.jpg','Penerbit',10,8,19,3,'2023-02-21 15:27:52','2023-02-21 15:27:52'),
-(29,'Bawang merah bawang putih','bawang-merah-bawang-putih','buku/8hPa1hX3yX6SBuW1DnyX5f0inJupc5IhPHU3DANo.jpg','Moch insaeni',2,8,19,3,'2023-02-21 15:28:31','2023-02-21 15:28:31'),
-(30,'Legenda bukit perak','legenda-bukit-perak','buku/Gs7ZiJBel8G0uGyEICI0MiuFwoUS1yWeSVGhTA9E.jpg','Ricky a manik',2,8,19,9,'2023-02-21 15:29:31','2023-02-21 15:29:31'),
-(31,'Panas dan perpindahannya','panas-dan-perpindahannya','buku/1GslcRoemvWPusWzmGbDdmRRtKHrca55nOjCsuM9.webp','Kurikulum',4,7,17,10,'2023-02-22 14:00:44','2023-02-22 14:00:44'),
-(32,'Kebersamaan','kebersamaan','buku/IV9eHyPck1JhVapXOnnwHoX2EYSyHfwVzdMTfJ8J.jpg','Kurikulum',4,7,17,10,'2023-02-22 14:01:31','2023-02-22 14:01:31'),
-(33,'Benda benda di sekitar kita','benda-benda-di-sekitar-kita','buku/FSrAgzF8TTGAazxe4ASAxfUiU2WZ8dDkklbBm9S2.jpg','Kurikulum',4,7,17,10,'2023-02-22 14:02:32','2023-02-22 14:02:32'),
-(34,'Keselamatan di rumah dan perjalanan','keselamatan-di-rumah-dan-perjalanan','buku/oDuOMf0e5VS7xCShrCqjVmoRJwQNjxxDUug0ir1a.jpg','Kurikulum',4,7,20,10,'2023-02-22 14:03:38','2023-02-22 14:03:38'),
-(35,'Lingkungan dan sahabat kita','lingkungan-dan-sahabat-kita','buku/b8xCI4Dp2vUS6seDuVXk3e6ITxnSEI0pN3oywIQZ.jpg','Kurikulum',4,7,17,10,'2023-02-22 14:06:50','2023-02-22 14:06:50'),
-(36,'Aku dan sekolahku','aku-dan-sekolahku','buku/CFYhPPgvBfip4djL0cXMt5U2rhkWEoTvA4ZTzmd5.jpg','Kurikulum',4,7,17,10,'2023-02-22 14:07:32','2023-02-22 14:07:32'),
-(37,'Panas dan perpindahannya','panas-dan-perpindahannya','buku/L69hsuoFS53QINy5EjD52wcGbKsTpLrPoPjkhwBc.jpg','Kurikulum',4,7,20,10,'2023-02-22 14:09:31','2023-02-22 14:09:31'),
-(38,'Keluargaku','keluargaku','buku/OSVYbzrEvFHfWd2Ug5tAyIgF64A0Ox6ka2Rl5E15.jpg','Kurikulum',4,7,17,10,'2023-02-22 14:10:30','2023-02-22 14:10:30'),
-(39,'Pengalamanku','pengalamanku','buku/S5eDytUjNKfAVMlSJNxmfmkll0nfWJuQ7NZkKjYR.jpg','Kurikulum',4,7,17,10,'2023-02-22 14:11:37','2023-02-22 14:11:37'),
-(40,'Merawat hewan dan tumbuhan','merawat-hewan-dan-tumbuhan','buku/tWV4vQpFEQ62BGIeIuDkSSl51fW0LJekgHzwUdMv.jpg','Kurikulum',4,7,17,10,'2023-02-22 14:12:39','2023-02-22 14:12:39'),
-(41,'Peristiwa alam','peristiwa-alam','buku/jzwN2tbXw0iSOTRPepTBJbl9SOt0NMJlvX0Qe5an.jpg','Kurikulum',4,7,17,10,'2023-02-22 14:13:40','2023-02-22 14:13:40'),
-(42,'Kegemaranku','kegemaranku','buku/kMNx4134JZVeeeVkKak7tTi67Q4MIthifHspCcec.jpg','Kurikulum',4,7,17,10,'2023-02-22 14:14:40','2023-02-22 14:14:40'),
-(43,'Kepemimpinan','kepemimpinan','buku/GgfdDMe8x4ubcPkwavgiNjMhI1puImM76yG9c77T.jpg','Kurikulum',4,7,17,10,'2023-02-22 14:15:12','2023-05-16 02:42:11'),
-(44,'Energi dan perubahannya','energi-dan-perubahannya','buku/7w5CAqjPDEtlSupmieynFjkvxbMDE4xzw0l2q9kL.webp','Kurikulum',4,7,20,10,'2023-02-22 14:15:54','2023-02-22 14:15:54'),
-(45,'Globalisasi','globalisasi','buku/zxWSiWcYtkivSoMbolreMwHAikce8YSTiHlGGNPz.jpg','Kurikulum',4,7,20,9,'2023-02-22 14:16:31','2023-05-16 02:54:28'),
-(46,'Sejarah perang Belanda','sejarah-perang-belanda','buku/IGw3HQZe8uZ2pEkJrKCUqrS0jBuQe72NkT6TW3Hb.jpg','Romi',3,9,21,5,'2023-02-26 08:44:14','2023-05-16 02:42:11');
+insert  into `buku`(`id`,`judul`,`slug`,`sampul`,`penulis`,`penerbit_id`,`kategori_id`,`rak_id`,`stok`,`dipinjam`,`total`,`created_at`,`updated_at`) values 
+(1,'Bintang','bintang','buku/Sampul_novel_Bintang.jpeg','Tere liye',2,2,2,9,0,9,'2023-01-20 16:08:06','2023-02-03 17:06:18'),
+(2,'Matahari','matahari','buku/Sampul_novel_Matahari.jpeg','Tere liye',3,2,3,8,1,9,'2023-01-20 16:08:06','2023-08-26 17:48:34'),
+(3,'Tentang kamu','tentang-kamu','buku/Tentang_Kamu_sampul.jpeg','Tere liye',2,2,4,11,0,11,'2023-01-20 16:08:06','2023-02-05 10:36:11'),
+(4,'Gusdur','gusdur','buku/gusdur.jpg','Greg borton',2,3,7,11,0,11,'2023-01-20 16:08:06','2023-06-11 10:25:58'),
+(5,'Habibie','habibie','buku/habibie.jpg','Raden toto sugiharto',2,3,8,10,0,10,'2023-01-20 16:08:06','2023-06-11 10:25:58'),
+(6,'Naruto volume 58','naruto-volume-58','buku/naruto-58.jpg','Masashi kishimoto',3,6,12,9,1,10,'2023-01-20 16:08:06','2023-06-11 11:26:08'),
+(7,'Naruto volume 71','naruto-volume-71','buku/naruto-71.jpg','Masashi kishimoto',3,6,13,6,1,7,'2023-01-20 16:08:06','2023-06-11 11:26:08'),
+(8,'Keselamatan di rumah dan di perjalanan','keselamatan-di-rumah-dan-di-perjalanan','buku/QiszOlutp3AVH2SC6QqAtf5FJeguDolSjCOhmR6w.jpg','Kemendikbud',1,1,1,3,0,3,'2023-01-26 14:12:26','2023-08-26 17:36:50'),
+(9,'Testbuku','testbuku','buku/GkBo4SGVDCFXlxmt5ns2wNk0heVjKVe71q2zHsaF.jpg','Test2',2,2,2,0,0,1,'2023-08-26 17:30:34','2023-08-26 17:31:46');
 
 /*Table structure for table `detail_peminjaman` */
 
@@ -95,33 +61,45 @@ CREATE TABLE `detail_peminjaman` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=541 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=566 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 /*Data for the table `detail_peminjaman` */
 
 insert  into `detail_peminjaman`(`id`,`peminjaman_id`,`buku_id`,`created_at`,`updated_at`) values 
-(509,505,7,'2023-01-20 16:24:47','2023-01-20 16:24:47'),
 (510,506,2,'2023-01-20 16:34:15','2023-01-20 16:34:15'),
 (511,506,3,'2023-01-20 16:34:20','2023-01-20 16:34:20'),
-(512,505,6,'2023-01-20 17:09:10','2023-01-20 17:09:10'),
 (513,507,5,'2023-01-20 17:29:58','2023-01-20 17:29:58'),
 (514,507,4,'2023-01-20 17:30:04','2023-01-20 17:30:04'),
 (515,507,3,'2023-01-20 17:30:10','2023-01-20 17:30:10'),
-(522,510,9,'2023-02-05 11:06:41','2023-02-05 11:06:41'),
-(523,510,8,'2023-02-05 11:06:46','2023-02-05 11:06:46'),
-(524,510,1,'2023-02-05 11:06:50','2023-02-05 11:06:50'),
-(525,511,9,'2023-02-18 14:17:59','2023-02-18 14:17:59'),
-(526,511,1,'2023-02-18 14:19:00','2023-02-18 14:19:00'),
-(527,511,7,'2023-02-18 14:19:19','2023-02-18 14:19:19'),
-(531,513,1,'2023-02-20 18:35:45','2023-02-20 18:35:45'),
-(532,513,8,'2023-02-20 18:35:47','2023-02-20 18:35:47'),
-(533,513,9,'2023-02-20 18:35:50','2023-02-20 18:35:50'),
-(534,514,43,'2023-02-26 08:45:11','2023-02-26 08:45:11'),
-(535,514,46,'2023-02-26 08:45:20','2023-02-26 08:45:20'),
-(537,516,45,'2023-05-16 02:53:51','2023-05-16 02:53:51'),
-(538,517,43,'2023-06-02 16:35:48','2023-06-02 16:35:48'),
-(539,518,45,'2023-07-05 04:13:18','2023-07-05 04:13:18'),
-(540,518,44,'2023-07-05 04:13:42','2023-07-05 04:13:42');
+(531,511,1,'2023-01-29 13:05:12','2023-01-29 13:05:12'),
+(532,511,2,'2023-01-29 13:05:16','2023-01-29 13:05:16'),
+(533,511,8,'2023-01-29 13:27:22','2023-01-29 13:27:22'),
+(534,512,2,'2023-01-30 14:36:12','2023-01-30 14:36:12'),
+(535,512,5,'2023-01-30 14:36:18','2023-01-30 14:36:18'),
+(536,512,4,'2023-01-30 14:36:22','2023-01-30 14:36:22'),
+(537,513,3,'2023-01-30 14:40:08','2023-01-30 14:40:08'),
+(538,513,1,'2023-01-30 14:40:17','2023-01-30 14:40:17'),
+(539,513,2,'2023-01-30 14:40:22','2023-01-30 14:40:22'),
+(540,514,1,'2023-02-03 13:35:40','2023-02-03 13:35:40'),
+(541,514,2,'2023-02-03 13:35:47','2023-02-03 13:35:47'),
+(542,514,3,'2023-02-03 13:35:55','2023-02-03 13:35:55'),
+(543,515,3,'2023-02-03 14:20:21','2023-02-03 14:20:21'),
+(545,515,5,'2023-02-03 14:20:34','2023-02-03 14:20:34'),
+(546,515,4,'2023-02-03 15:19:49','2023-02-03 15:19:49'),
+(547,516,8,'2023-02-03 15:33:45','2023-02-03 15:33:45'),
+(548,516,1,'2023-02-03 15:33:53','2023-02-03 15:33:53'),
+(550,518,5,'2023-02-03 17:06:45','2023-02-03 17:06:45'),
+(551,518,3,'2023-02-04 14:11:29','2023-02-04 14:11:29'),
+(555,519,3,'2023-02-04 14:28:40','2023-02-04 14:28:40'),
+(556,519,7,'2023-02-04 14:28:45','2023-02-04 14:28:45'),
+(557,520,5,'2023-02-05 10:36:43','2023-02-05 10:36:43'),
+(558,520,6,'2023-02-05 10:36:49','2023-02-05 10:36:49'),
+(559,521,8,'2023-06-11 09:12:06','2023-06-11 09:12:06'),
+(560,521,6,'2023-06-11 09:12:22','2023-06-11 09:12:22'),
+(561,522,6,'2023-06-11 09:33:40','2023-06-11 09:33:40'),
+(562,522,7,'2023-06-11 09:33:46','2023-06-11 09:33:46'),
+(563,523,8,'2023-06-11 12:04:01','2023-06-11 12:04:01'),
+(565,525,2,'2023-08-26 17:46:43','2023-08-26 17:46:43');
 
 /*Table structure for table `failed_jobs` */
 
@@ -129,12 +107,12 @@ DROP TABLE IF EXISTS `failed_jobs`;
 
 CREATE TABLE `failed_jobs` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
-  `uuid` varchar(255) NOT NULL,
-  `connection` text NOT NULL,
-  `queue` text NOT NULL,
-  `payload` longtext NOT NULL,
-  `exception` longtext NOT NULL,
-  `failed_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  `uuid` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `connection` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `queue` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `payload` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
+  `exception` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
+  `failed_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`),
   UNIQUE KEY `failed_jobs_uuid_unique` (`uuid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -147,12 +125,12 @@ DROP TABLE IF EXISTS `kategori`;
 
 CREATE TABLE `kategori` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
-  `nama` varchar(255) NOT NULL,
-  `slug` varchar(255) NOT NULL,
+  `nama` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `slug` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 /*Data for the table `kategori` */
 
@@ -162,11 +140,7 @@ insert  into `kategori`(`id`,`nama`,`slug`,`created_at`,`updated_at`) values
 (3,'Sejarah','sejarah','2023-01-20 16:08:05','2023-01-20 16:08:05'),
 (4,'Religi','religi','2023-01-20 16:08:05','2023-01-20 16:08:05'),
 (5,'Biografi','biografi','2023-01-20 16:08:06','2023-01-20 16:08:06'),
-(6,'Komik','komik','2023-01-20 16:08:06','2023-01-20 16:08:06'),
-(7,'Matematika','matematika','2023-01-22 00:35:00','2023-01-22 00:35:00'),
-(8,'Cerita','cerita','2023-02-21 14:44:28','2023-02-21 14:44:28'),
-(9,'Sejarah','sejarah','2023-02-26 08:41:03','2023-02-26 08:41:03'),
-(10,'Pendidikan','pendidikan','2023-05-16 02:39:46','2023-05-16 02:39:46');
+(6,'Komik','komik','2023-01-20 16:08:06','2023-01-20 16:08:06');
 
 /*Table structure for table `migrations` */
 
@@ -174,7 +148,7 @@ DROP TABLE IF EXISTS `migrations`;
 
 CREATE TABLE `migrations` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `migration` varchar(255) NOT NULL,
+  `migration` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `batch` int(11) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -199,7 +173,7 @@ DROP TABLE IF EXISTS `model_has_permissions`;
 
 CREATE TABLE `model_has_permissions` (
   `permission_id` bigint(20) unsigned NOT NULL,
-  `model_type` varchar(255) NOT NULL,
+  `model_type` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `model_id` bigint(20) unsigned NOT NULL,
   PRIMARY KEY (`permission_id`,`model_id`,`model_type`),
   KEY `model_has_permissions_model_id_model_type_index` (`model_id`,`model_type`),
@@ -214,7 +188,7 @@ DROP TABLE IF EXISTS `model_has_roles`;
 
 CREATE TABLE `model_has_roles` (
   `role_id` bigint(20) unsigned NOT NULL,
-  `model_type` varchar(255) NOT NULL,
+  `model_type` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `model_id` bigint(20) unsigned NOT NULL,
   PRIMARY KEY (`role_id`,`model_id`,`model_type`),
   KEY `model_has_roles_model_id_model_type_index` (`model_id`,`model_type`),
@@ -731,25 +705,22 @@ insert  into `model_has_roles`(`role_id`,`model_type`,`model_id`) values
 (3,'App\\Models\\User',505),
 (3,'App\\Models\\User',506),
 (3,'App\\Models\\User',507),
-(3,'App\\Models\\User',508),
-(3,'App\\Models\\User',509),
-(3,'App\\Models\\User',510);
+(3,'App\\Models\\User',511),
+(3,'App\\Models\\User',512),
+(3,'App\\Models\\User',513);
 
 /*Table structure for table `password_resets` */
 
 DROP TABLE IF EXISTS `password_resets`;
 
 CREATE TABLE `password_resets` (
-  `email` varchar(255) NOT NULL,
-  `token` varchar(255) NOT NULL,
+  `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `token` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   KEY `password_resets_email_index` (`email`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 /*Data for the table `password_resets` */
-
-insert  into `password_resets`(`email`,`token`,`created_at`) values 
-('habul.tekaje@gmail.com','$2y$10$tcPnATRbBf/l1jWrV/hauu3Em/4F9v8E9jQdSQ8pNILe7UbN/Orj.','2023-01-22 15:16:12');
 
 /*Table structure for table `peminjaman` */
 
@@ -757,35 +728,40 @@ DROP TABLE IF EXISTS `peminjaman`;
 
 CREATE TABLE `peminjaman` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
-  `kode_pinjam` varchar(255) NOT NULL,
+  `kode_pinjam` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `peminjam_id` bigint(20) unsigned NOT NULL,
   `petugas_pinjam` bigint(20) unsigned DEFAULT NULL,
   `petugas_kembali` bigint(20) unsigned DEFAULT NULL,
   `status` int(11) NOT NULL,
-  `denda` int(11) DEFAULT 0,
-  `denda_hilang` int(11) DEFAULT 0,
+  `denda` int(11) DEFAULT '0',
+  `denda_hilang` int(11) DEFAULT '0',
   `tanggal_pinjam` date DEFAULT NULL,
   `tanggal_kembali` date DEFAULT NULL,
   `tanggal_pengembalian` date DEFAULT NULL,
-  `hilang` int(1) DEFAULT 0,
+  `hilang` int(1) DEFAULT '0',
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=519 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=526 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 /*Data for the table `peminjaman` */
 
 insert  into `peminjaman`(`id`,`kode_pinjam`,`peminjam_id`,`petugas_pinjam`,`petugas_kembali`,`status`,`denda`,`denda_hilang`,`tanggal_pinjam`,`tanggal_kembali`,`tanggal_pengembalian`,`hilang`,`created_at`,`updated_at`) values 
-(505,'576880841',3,NULL,1,3,9500,0,'2023-01-22','2023-02-01','2023-02-20',0,'2023-01-20 16:22:45','2023-02-20 17:29:07'),
 (506,'192003192',4,NULL,1,3,500,0,'2023-01-03','2023-01-20','2023-01-21',0,'2023-01-20 16:34:15','2023-01-21 23:59:10'),
-(507,'437719288',5,NULL,1,3,0,0,'2023-01-21','2023-01-31','2023-01-31',0,'2023-01-20 17:29:58','2023-01-31 13:53:47'),
-(510,'734902074',507,NULL,2,3,0,0,'2023-02-05','2023-02-15','2023-02-05',0,'2023-02-05 11:06:41','2023-02-05 11:10:14'),
-(511,'665169225',5,NULL,1,3,0,0,'2023-02-20','2023-03-02','2023-02-20',0,'2023-02-18 14:17:59','2023-02-20 19:17:44'),
-(513,'916043161',506,NULL,1,3,0,0,'2023-02-24','2023-03-06','2023-02-20',0,'2023-02-20 18:35:45','2023-02-20 19:17:41'),
-(514,'305238567',508,NULL,1,3,34500,0,'2023-02-26','2023-03-08','2023-05-16',0,'2023-02-26 08:45:11','2023-05-16 02:42:11'),
-(516,'690529816',509,NULL,1,3,20000,30000,'2023-05-16','2023-05-26','2023-07-05',0,'2023-05-16 02:53:51','2023-07-05 04:15:11'),
-(517,'457759484',3,NULL,NULL,0,NULL,0,NULL,NULL,NULL,0,'2023-06-02 16:35:48','2023-06-02 16:35:48'),
-(518,'769319996',510,1,NULL,2,0,0,'2023-07-05','2023-07-15',NULL,0,'2023-07-05 04:13:18','2023-07-05 04:14:06');
+(507,'437719288',5,NULL,1,3,0,0,'2023-01-21','2023-01-31','2023-01-24',0,'2023-01-20 17:29:58','2023-01-24 13:36:12'),
+(511,'979890107',3,NULL,2,3,0,0,'2023-01-29','2023-02-08','2023-01-30',0,'2023-01-29 13:05:07','2023-01-30 14:35:51'),
+(512,'119293163',3,NULL,1,3,61000,0,'2023-01-30','2023-02-09','2023-06-11',0,'2023-01-30 14:36:12','2023-06-11 10:25:58'),
+(513,'980778701',5,NULL,2,3,0,0,'2023-01-30','2023-02-09','2023-01-30',0,'2023-01-30 14:40:08','2023-01-30 14:49:57'),
+(514,'912321897',5,NULL,2,3,0,0,'2023-02-03','2023-02-13','2023-02-03',0,'2023-02-03 13:35:40','2023-02-03 13:37:59'),
+(515,'607214580',5,NULL,2,3,0,0,'2023-02-03','2023-02-13','2023-02-03',0,'2023-02-03 14:20:21','2023-02-03 15:32:25'),
+(516,'509242602',5,NULL,2,3,0,0,'2023-02-03','2023-02-13','2023-02-03',0,'2023-02-03 15:33:44','2023-02-03 17:06:18'),
+(518,'563538755',5,NULL,2,3,0,0,'2023-02-04','2023-02-14','2023-02-04',0,'2023-02-03 17:06:45','2023-02-04 14:28:25'),
+(519,'991421484',5,NULL,1,3,0,0,'2023-02-04','2023-02-14','2023-02-05',0,'2023-02-04 14:28:40','2023-02-05 10:36:11'),
+(520,'742849997',5,NULL,2,3,1000,0,'2023-02-02','2023-02-03','2023-02-05',0,'2023-02-05 10:36:43','2023-02-05 10:42:27'),
+(521,'527680306',507,NULL,1,3,30000,30000,'2023-06-11','2023-06-21','2023-08-20',1,'2023-06-11 09:12:06','2023-08-20 14:41:48'),
+(522,'609858296',5,1,1,2,0,0,'2023-06-14','2023-06-24','2023-06-11',0,'2023-06-11 09:33:40','2023-06-11 13:11:14'),
+(523,'771605985',512,1,1,3,33000,0,'2023-06-11','2023-06-21','2023-08-26',0,'2023-06-11 12:04:01','2023-08-26 17:36:50'),
+(525,'525118507',3,2,NULL,2,0,0,'2023-08-27','2023-09-06',NULL,0,'2023-08-26 17:46:43','2023-08-26 17:48:34');
 
 /*Table structure for table `penerbit` */
 
@@ -793,27 +769,19 @@ DROP TABLE IF EXISTS `penerbit`;
 
 CREATE TABLE `penerbit` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
-  `nama` varchar(255) NOT NULL,
-  `slug` varchar(255) NOT NULL,
+  `nama` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `slug` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 /*Data for the table `penerbit` */
 
 insert  into `penerbit`(`id`,`nama`,`slug`,`created_at`,`updated_at`) values 
 (1,'None','none','2023-01-20 16:08:06','2023-01-20 16:08:06'),
 (2,'Gramedia','gramedia','2023-01-20 16:08:06','2023-01-20 16:08:06'),
-(3,'Erlangga','erlangga','2023-01-20 16:08:06','2023-01-20 16:08:06'),
-(4,'Kemendikbud','kemendikbud','2023-01-22 00:36:35','2023-01-22 00:36:35'),
-(5,'Moch isnaeni','moch-isnaeni','2023-02-21 14:46:16','2023-02-21 14:46:16'),
-(6,'Budi Pekerti','budi-pekerti','2023-02-21 14:54:09','2023-02-21 14:54:09'),
-(7,'Dwibahasa','dwibahasa','2023-02-21 15:19:25','2023-02-21 15:19:25'),
-(8,'Divakids','divakids','2023-02-21 15:20:24','2023-02-21 15:20:24'),
-(9,'HK Legenda','hk-legenda','2023-02-21 15:24:47','2023-02-21 15:24:47'),
-(10,'Duta','duta','2023-02-21 15:27:08','2023-02-21 15:27:08'),
-(11,'Ki Hajar Dewantara','ki-hajar-dewantara','2023-05-16 02:41:29','2023-05-16 02:41:29');
+(3,'Erlangga','erlangga','2023-01-20 16:08:06','2023-01-20 16:08:06');
 
 /*Table structure for table `permissions` */
 
@@ -821,8 +789,8 @@ DROP TABLE IF EXISTS `permissions`;
 
 CREATE TABLE `permissions` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
-  `name` varchar(255) NOT NULL,
-  `guard_name` varchar(255) NOT NULL,
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `guard_name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`),
@@ -837,14 +805,14 @@ DROP TABLE IF EXISTS `rak`;
 
 CREATE TABLE `rak` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
-  `rak` varchar(255) NOT NULL,
-  `baris` varchar(255) NOT NULL,
-  `slug` varchar(255) NOT NULL,
+  `rak` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `baris` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `slug` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `kategori_id` bigint(20) unsigned NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 /*Data for the table `rak` */
 
@@ -864,13 +832,7 @@ insert  into `rak`(`id`,`rak`,`baris`,`slug`,`kategori_id`,`created_at`,`updated
 (13,'3','2','3-2',6,'2023-01-20 16:08:06','2023-01-20 16:08:06'),
 (14,'3','3','3-3',6,'2023-01-20 16:08:06','2023-01-20 16:08:06'),
 (15,'3','4','3-4',6,'2023-01-20 16:08:06','2023-01-20 16:08:06'),
-(16,'3','5','3-5',6,'2023-01-20 16:08:06','2023-01-20 16:08:06'),
-(17,'4','1','4-1',7,'2023-01-22 00:35:49','2023-01-22 00:35:49'),
-(18,'3','6','3-6',1,'2023-02-05 11:00:35','2023-02-05 11:00:35'),
-(19,'4','2','4-2',8,'2023-02-21 14:45:56','2023-02-21 14:45:56'),
-(20,'4','3','4-3',7,'2023-02-22 14:02:54','2023-02-22 14:02:54'),
-(21,'4','4','4-4',9,'2023-02-26 08:41:24','2023-02-26 08:41:24'),
-(22,'6','1','6-1',10,'2023-05-16 02:40:30','2023-05-16 02:40:30');
+(16,'3','5','3-5',6,'2023-01-20 16:08:06','2023-01-20 16:08:06');
 
 /*Table structure for table `role_has_permissions` */
 
@@ -893,8 +855,8 @@ DROP TABLE IF EXISTS `roles`;
 
 CREATE TABLE `roles` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
-  `name` varchar(255) NOT NULL,
-  `guard_name` varchar(255) NOT NULL,
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `guard_name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`),
@@ -914,31 +876,31 @@ DROP TABLE IF EXISTS `users`;
 
 CREATE TABLE `users` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
-  `name` varchar(255) NOT NULL,
-  `kelas` varchar(255) DEFAULT NULL,
-  `email` varchar(255) NOT NULL,
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `kelas` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `email_verified_at` timestamp NULL DEFAULT NULL,
-  `password` varchar(255) NOT NULL,
-  `remember_token` varchar(100) DEFAULT NULL,
+  `password` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `remember_token` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `users_email_unique` (`email`)
-) ENGINE=InnoDB AUTO_INCREMENT=511 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=514 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 /*Data for the table `users` */
 
 insert  into `users`(`id`,`name`,`kelas`,`email`,`email_verified_at`,`password`,`remember_token`,`created_at`,`updated_at`) values 
-(1,'Admin',NULL,'admin@gmail.com','2023-01-20 16:08:05','$2y$10$rQxvywTaFOkwcyg8eDCnAerj0UgZ/lJmWYvy5O10GZJBJZqaidY1e',NULL,'2023-01-20 16:08:05','2023-01-20 16:08:05'),
-(2,'Petugas',NULL,'petugas@gmail.com','2023-01-20 16:08:05','$2y$10$uqG0CdWbFAVnD1kjHF1q4.ejrBmPACQ9fYIhlZPzMTfZjvr9j/pHi',NULL,'2023-01-20 16:08:05','2023-01-20 16:08:05'),
-(3,'Peminjam','3A','peminjam@gmail.com','2023-01-20 16:08:05','$2y$10$3HUTrp6zIP9cgEf2tDsBT.vKWdmaibcgGsj5Gz.1XLlpc6554FGh6',NULL,'2023-01-20 16:08:05','2023-01-20 16:08:05'),
-(4,'Musyahya','5B','musyahya@gmail.com','2023-01-20 16:08:05','$2y$10$vmiL3nXBCrTOSo3Fo9hcDu4JsGco904.EaS49ScoZ7B4zHW8/SnVu',NULL,'2023-01-20 16:08:05','2023-01-20 16:08:05'),
-(5,'Yahya','6A','yahya@gmail.com','2023-01-20 16:08:05','$2y$10$mv0OmqzZuXq2qCF8Y1hZX.GT7dzsUlcqxcTuJKb2igVCIOi5MY2G6',NULL,'2023-01-20 16:08:05','2023-01-20 16:08:05'),
-(506,'Habul','6B','habul.tekaje@gmail.com',NULL,'$2y$10$6KKTbM1BpHOA2ikN9P1MNujHmof7Te7JL0bfKTaK.p6KS/mOKDVzy',NULL,'2023-01-22 15:15:57','2023-01-22 15:15:57'),
-(507,'Andre','1A','andre@gmail.com',NULL,'$2y$10$bVzODpzSg6P3Es1yZamUL.jmNsmHBCCQBL3XeiiRgVDPo99/.EvO2',NULL,'2023-02-05 11:06:19','2023-02-05 11:06:19'),
-(508,'Romi','1','romiirwanda5@gmail.com',NULL,'$2y$10$74tKE21/ugp1vVhNumtK5eXjOGNqtxNrRdV9z6casfhST3vjcbALq',NULL,'2023-02-26 08:45:04','2023-02-26 08:45:04'),
-(509,'Farhan','5A','farhan123@gmail.com',NULL,'$2y$10$xaPNg/4yrV9pZXb/4Ijb3uWyTWoEtrpqC0u6f/.Zpk5FUlHwBM1Vq',NULL,'2023-05-16 02:52:36','2023-05-16 02:52:36'),
-(510,'Romi','KELAS 6','romiirwanda1@gmail.com',NULL,'$2y$10$4YJDMOukHHgDYB2Ahmgg0.nAPd3z5X8jdJlFmbXpvCLOy8bfry/Xy',NULL,'2023-07-05 04:13:15','2023-07-05 04:13:15');
+(1,'Admin','','admin@gmail.com','2023-01-20 16:08:05','$2y$10$rQxvywTaFOkwcyg8eDCnAerj0UgZ/lJmWYvy5O10GZJBJZqaidY1e',NULL,'2023-01-20 16:08:05','2023-01-20 16:08:05'),
+(2,'Petugas','','petugas@gmail.com','2023-01-20 16:08:05','$2y$10$uqG0CdWbFAVnD1kjHF1q4.ejrBmPACQ9fYIhlZPzMTfZjvr9j/pHi',NULL,'2023-01-20 16:08:05','2023-01-20 16:08:05'),
+(3,'Peminjam','5A','peminjam@gmail.com','2023-01-20 16:08:05','$2y$10$3HUTrp6zIP9cgEf2tDsBT.vKWdmaibcgGsj5Gz.1XLlpc6554FGh6',NULL,'2023-01-20 16:08:05','2023-01-20 16:08:05'),
+(4,'Musyahya','5C','musyahya@gmail.com','2023-01-20 16:08:05','$2y$10$vmiL3nXBCrTOSo3Fo9hcDu4JsGco904.EaS49ScoZ7B4zHW8/SnVu',NULL,'2023-01-20 16:08:05','2023-01-20 16:08:05'),
+(5,'Yahya','5B','yahya@gmail.com','2023-01-20 16:08:05','$2y$10$mv0OmqzZuXq2qCF8Y1hZX.GT7dzsUlcqxcTuJKb2igVCIOi5MY2G6',NULL,'2023-01-20 16:08:05','2023-01-20 16:08:05'),
+(506,'Zahira','6A','zahira@gmail.com',NULL,'$2y$10$muLPeDAZvTwEt.mn6VUI.Owf8S084dtbQ/l0X4TBZUBGganHytYM.',NULL,'2023-01-22 15:41:01','2023-01-22 15:41:01'),
+(507,'Budi','3B','budi@gmail.com',NULL,'$2y$10$HftEhU2wIwiK96ZuL1HstOXLREtVzU7LuZfYQvsPVIb74iVQ4q8Iy',NULL,'2023-01-24 14:08:15','2023-01-24 14:08:15'),
+(511,'Budp','1B','budo@gmail.com',NULL,'$2y$10$wtWYIrY7nPbEAyQ9m/MgFuI/7xzzE5U7mDJgvC0TkfpLYqrpmUt3a',NULL,'2023-01-26 14:01:18','2023-01-26 14:01:18'),
+(512,'Yoyo','1B','yoyo@gmail.com',NULL,'$2y$10$O0ynqJklRAu.iATNWzn0IOGM8a2SpIGjKa7CDv.jZZIXeGqr6zpIa',NULL,'2023-01-26 14:04:07','2023-01-26 14:04:07'),
+(513,'Test3','1B','test123@gmail.com',NULL,'$2y$10$JvHV.erh0A8FgfU2yUsiQ.y6VCH27T2pSOcfz91qlEXeWEyPjOkHu',NULL,'2023-02-13 04:10:14','2023-02-13 04:10:14');
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
 /*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;

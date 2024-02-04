@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\UserController;
+use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\CekRoleController;
 use App\Http\Controllers\Peminjam\BukuController as PeminjamBukuController;
 use App\Http\Controllers\Peminjam\KeranjangController;
@@ -16,7 +17,9 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 
 
-Route::get('/', PeminjamBukuController::class);
+// Route::get('/', PeminjamBukuController::class);
+Route::get('/', LoginController::class);
+
 
 Auth::routes();
 
@@ -36,6 +39,7 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/chart', ChartController::class);
         Route::get('/transaksi/print/{id}', [TransaksiController::class, 'print']);
         Route::get('/transaksi/print_denda/{id}', [TransaksiController::class, 'print_denda']);
+        Route::get('/laporan', LaporanController::class);
     });
 
     // role peminjam
@@ -46,6 +50,6 @@ Route::middleware(['auth'])->group(function () {
     // role admin
     Route::middleware(['role:admin'])->group(function () {
         Route::get('/user', UserController::class);
-        Route::get('/laporan', LaporanController::class);
+        // Route::get('/laporan', LaporanController::class);
     });
 });

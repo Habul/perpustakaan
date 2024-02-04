@@ -33,7 +33,7 @@
                          </p>
                      </a>
                  </li>
-                 @role('admin')
+                 {{-- @role('admin')
                      <li class="nav-header">ADMIN</li>
 
                      <li class="nav-item">
@@ -44,7 +44,7 @@
                              </p>
                          </a>
                      </li>
-                 @endrole
+                 @endrole --}}
 
                  <li class="nav-header">MASTER</li>
 
@@ -91,21 +91,21 @@
                      </a>
                  </li>
 
-                 @role('admin')
-                     <li class="nav-item">
-                         <a href="/laporan" class="nav-link @yield('active-laporan')">
-                             <i class="nav-icon fas fa-book"></i>
-                             <p>Laporan</p>
-                         </a>
-                     </li>
+                 {{-- @role('admin') --}}
+                 <li class="nav-item">
+                     <a href="/laporan" class="nav-link @yield('active-laporan')">
+                         <i class="nav-icon fas fa-book"></i>
+                         <p>Laporan</p>
+                     </a>
+                 </li>
 
-                     <li class="nav-item">
-                         <a href="/chart" class="nav-link @yield('active-chart')">
-                             <i class="nav-icon fas fa-chart-bar"></i>
-                             <p>Chart</p>
-                         </a>
-                     </li>
-                 @endrole
+                 <li class="nav-item">
+                     <a href="/chart" class="nav-link @yield('active-chart')">
+                         <i class="nav-icon fas fa-chart-bar"></i>
+                         <p>Chart</p>
+                     </a>
+                 </li>
+                 {{-- @endrole --}}
 
 
                  <li class="nav-item">

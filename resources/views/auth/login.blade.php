@@ -63,12 +63,12 @@
                                         {{ __('Login') }}
                                         <i class="fas fa-sign-in-alt"></i>
                                     </button>
-                                    @if (Route::has('register'))
+                                    {{-- @if (Route::has('register'))
                                         <a class="btn btn-warning" href="{{ route('register') }}">
                                             {{ __('Register') }}
                                             <i class="fas fa-address-card"></i>
                                         </a>
-                                    @endif
+                                    @endif --}}
                                     <br />
                                 </div>
                             </div>

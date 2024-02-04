@@ -2,6 +2,7 @@
     <div class="col-12">
 
         @include('admin-lte/flash')
+        @include('petugas/transaksi/create')
         @include('petugas/transaksi/edit')
         @include('petugas/transaksi/hilang')
         @include('petugas/transaksi/submit')
@@ -18,6 +19,9 @@
 
         <div class="card card-primary card-outline">
             <div class="card-header">
+                <a class="btn btn-primary" wire:click="create">
+                    <i class="fa fa-plus"></i>&nbsp; Pinjam Buku
+                </a>
 
                 <div class="card-tools">
                     <div class="input-group input-group">
@@ -58,7 +62,7 @@
                                 <tr>
                                     <td class="align-middle text-center">{{ $loop->iteration }}</td>
                                     <td class="align-middle">{{ $item->kode_pinjam }}</td>
-                                    <td class="align-middle text-center">{{ $item->user->name }}</td>
+                                    <td class="align-middle text-center">{{ ucwords($item->peminjam_nama) }}</td>
                                     <td class="align-middle">
                                         <ul>
                                             @foreach ($item->detail_peminjaman as $detail_peminjaman)

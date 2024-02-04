@@ -113,7 +113,7 @@
             </div>
         </div>
 
-        <div class="col-md-6">
+        {{-- <div class="col-md-6">
             <div class="card card-outline card-success">
                 <div class="card-header">
                     <h5 class="card-title">User Terbaru</h5>
@@ -149,7 +149,7 @@
                     </table>
                 </div>
             </div>
-        </div>
+        </div> --}}
 
         <div class="col-md-6">
             <div class="card card-outline card-secondary">
@@ -210,7 +210,7 @@
                                 <th style="width: 10px">#</th>
                                 <th>Kode Pinjam</th>
                                 <th>Nama</th>
-                                <th>kelas</th>
+                                {{-- <th>kelas</th> --}}
                                 <th>Tanggal Pinjam</th>
                             </tr>
                         </thead>
@@ -219,8 +219,8 @@
                                 <tr>
                                     <td>{{ $loop->iteration }}</td>
                                     <td>{{ $item->kode_pinjam }}</td>
-                                    <td>{{ $item->user->name }}</td>
-                                    <td>{{ $item->user->kelas }}</td>
+                                    <td>{{ $item->peminjam_nama }}</td>
+                                    {{-- <td>{{ $item->user->kelas }}</td> --}}
                                     <td>{{ $item->tanggal_pinjam }}</td>
                                 </tr>
                             @endforeach

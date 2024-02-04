@@ -50,7 +50,7 @@
                         <tr>
                             <td>Nama</td>
                             <td>:</td>
-                            <td>{{ $item->user->name }}</td>
+                            <td>{{ $item->peminjam_nama }}</td>
                         </tr>
                         <tr>
                             <td>Buku</td>
