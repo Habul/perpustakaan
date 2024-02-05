@@ -12,6 +12,8 @@ use App\Http\Controllers\Petugas\KategoriController;
 use App\Http\Controllers\Petugas\PenerbitController;
 use App\Http\Controllers\Petugas\RakController;
 use App\Http\Controllers\Petugas\LaporanController;
+use App\Http\Controllers\Petugas\LapPinjamController;
+use App\Http\Controllers\Petugas\LapDendaController;
 use App\Http\Controllers\Petugas\TransaksiController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
@@ -40,6 +42,8 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/transaksi/print/{id}', [TransaksiController::class, 'print']);
         Route::get('/transaksi/print_denda/{id}', [TransaksiController::class, 'print_denda']);
         Route::get('/laporan', LaporanController::class);
+        Route::get('/laporandenda', LapDendaController::class);
+        Route::get('/laporanpinjam', LapPinjamController::class);
     });
 
     // role peminjam

@@ -92,11 +92,43 @@
                  </li>
 
                  {{-- @role('admin') --}}
-                 <li class="nav-item">
+                 {{-- <li class="nav-item">
                      <a href="/laporan" class="nav-link @yield('active-laporan')">
                          <i class="nav-icon fas fa-book"></i>
                          <p>Laporan</p>
                      </a>
+                 </li> --}}
+
+                 <li class="nav-item @yield('menu-open-data-laporan')">
+                     <a href="#" class="nav-link @yield('active-data-laporan')">
+                         <i class="nav-icon fas fa-copy"></i>
+                         <p>
+                             Laporan
+                             <i class="fas fa-angle-left right"></i>
+                         </p>
+                     </a>
+                     <ul class="nav nav-treeview">
+                         <li class="nav-item">
+                             <a href="/laporanpinjam" class="nav-link @yield('active-laporanpinjam')">
+                                 <i class="far fa-circle nav-icon"></i>
+                                 <p>Laporan Sedang Dipinjam</p>
+                             </a>
+                         </li>
+
+                         <li class="nav-item">
+                             <a href="/laporan" class="nav-link @yield('active-laporan')">
+                                 <i class="far fa-circle nav-icon"></i>
+                                 <p>Laporan Selesai Dipinjam</p>
+                             </a>
+                         </li>
+
+                         <li class="nav-item">
+                             <a href="/laporandenda" class="nav-link @yield('active-laporandenda')">
+                                 <i class="far fa-circle nav-icon"></i>
+                                 <p>Laporan Yang Didenda</p>
+                             </a>
+                         </li>
+                     </ul>
                  </li>
 
                  <li class="nav-item">

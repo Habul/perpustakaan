@@ -9,7 +9,7 @@ class Laporan extends Component
 {
     public function render()
     {
-        $laporan = Peminjaman::latest()->where('status', 3)->get();
+        $laporan = Peminjaman::latest()->where('status', 3)->where('denda_hilang', '=', '0')->where('denda', '=', '0')->get();
 
 
         return view('livewire.admin.laporan', [

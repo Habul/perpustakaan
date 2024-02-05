@@ -2,7 +2,7 @@
     <div class="col-12">
         <div class="card card-info card-outline">
             <div class="card-header">
-                <h4 class="card-title">Laporan Selesai Dipinjam</h4>
+                <h4 class="card-title">Laporan Yang Didenda</h4>
                 <div class="card-tools">
                     <button type="button" class="btn btn-tool" data-card-widget="maximize">
                         <i class="fas fa-expand"></i>
@@ -15,7 +15,7 @@
                 </div>
             </div>
             <div class="card-body table-responsive">
-                <table id="index2" class="table table-sm table-bordered table-striped">
+                <table id="index3" class="table table-sm table-bordered table-striped">
                     <thead class="thead-light text-center">
                         <tr>
                             <th width="4%">No</th>
@@ -27,10 +27,12 @@
                             <th>Tanggal Pinjam</th>
                             <th>Tanggal Kembali</th>
                             <th>Pengembalian</th>
+                            <th>Denda Telat</th>
+                            <th>Denda Buku</th>
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach ($laporan as $item)
+                        @foreach ($laporandenda as $item)
                             <tr>
                                 <td class="align-middle text-center"></td>
                                 <td class="align-middle">{{ $item->kode_pinjam }}</td>
@@ -59,6 +61,8 @@
                                         {{ $item->tanggal_pengembalian }}
                                     @endempty
                                 </td>
+                                <td class="align-middle text-center">{{ $item->denda }}</td>
+                                <td class="align-middle text-center">{{ $item->denda_hilang }}</td>
                             </tr>
                         @endforeach
                     </tbody>

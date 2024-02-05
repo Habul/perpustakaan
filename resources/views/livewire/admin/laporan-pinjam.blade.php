@@ -2,7 +2,7 @@
     <div class="col-12">
         <div class="card card-info card-outline">
             <div class="card-header">
-                <h4 class="card-title">Laporan Selesai Dipinjam</h4>
+                <h4 class="card-title">Laporan Sedang Dipinjam</h4>
                 <div class="card-tools">
                     <button type="button" class="btn btn-tool" data-card-widget="maximize">
                         <i class="fas fa-expand"></i>
@@ -15,7 +15,7 @@
                 </div>
             </div>
             <div class="card-body table-responsive">
-                <table id="index2" class="table table-sm table-bordered table-striped">
+                <table id="index1" class="table table-sm table-bordered table-striped">
                     <thead class="thead-light text-center">
                         <tr>
                             <th width="4%">No</th>
@@ -26,11 +26,9 @@
                             <th>Lokasi</th>
                             <th>Tanggal Pinjam</th>
                             <th>Tanggal Kembali</th>
-                            <th>Pengembalian</th>
-                        </tr>
                     </thead>
                     <tbody>
-                        @foreach ($laporan as $item)
+                        @foreach ($laporanpinjam as $item)
                             <tr>
                                 <td class="align-middle text-center"></td>
                                 <td class="align-middle">{{ $item->kode_pinjam }}</td>
@@ -52,13 +50,6 @@
                                 </td>
                                 <td class="align-middle text-center">{{ $item->tanggal_pinjam }}</td>
                                 <td class="align-middle text-center">{{ $item->tanggal_kembali }}</td>
-                                <td class="align-middle text-center">
-                                    @empty($item->tanggal_pengembalian)
-                                        {{ '-' }}
-                                    @else
-                                        {{ $item->tanggal_pengembalian }}
-                                    @endempty
-                                </td>
                             </tr>
                         @endforeach
                     </tbody>

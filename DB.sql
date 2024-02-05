@@ -1,6 +1,6 @@
 /*
 SQLyog Ultimate v13.1.1 (64 bit)
-MySQL - 5.7.35-log : Database - laravel8_perpustakaan
+MySQL - 8.0.30 : Database - laravel8_perpustakaan
 *********************************************************************
 */
 
@@ -12,7 +12,7 @@ MySQL - 5.7.35-log : Database - laravel8_perpustakaan
 /*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
-CREATE DATABASE /*!32312 IF NOT EXISTS*/`laravel8_perpustakaan` /*!40100 DEFAULT CHARACTER SET latin1 */;
+CREATE DATABASE /*!32312 IF NOT EXISTS*/`laravel8_perpustakaan` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
 
 USE `laravel8_perpustakaan`;
 
@@ -21,17 +21,17 @@ USE `laravel8_perpustakaan`;
 DROP TABLE IF EXISTS `buku`;
 
 CREATE TABLE `buku` (
-  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
-  `judul` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `slug` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `sampul` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `penulis` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `penerbit_id` bigint(20) unsigned NOT NULL,
-  `kategori_id` bigint(20) unsigned NOT NULL,
-  `rak_id` bigint(20) unsigned NOT NULL,
-  `stok` int(11) NOT NULL,
-  `dipinjam` int(11) NOT NULL DEFAULT '0',
-  `total` int(11) NOT NULL DEFAULT '0',
+  `id` bigint unsigned NOT NULL AUTO_INCREMENT,
+  `judul` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `slug` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `sampul` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `penulis` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `penerbit_id` bigint unsigned NOT NULL,
+  `kategori_id` bigint unsigned NOT NULL,
+  `rak_id` bigint unsigned NOT NULL,
+  `stok` int NOT NULL,
+  `dipinjam` int NOT NULL DEFAULT '0',
+  `total` int NOT NULL DEFAULT '0',
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
@@ -40,78 +40,76 @@ CREATE TABLE `buku` (
 /*Data for the table `buku` */
 
 insert  into `buku`(`id`,`judul`,`slug`,`sampul`,`penulis`,`penerbit_id`,`kategori_id`,`rak_id`,`stok`,`dipinjam`,`total`,`created_at`,`updated_at`) values 
-(1,'Bintang','bintang','buku/Sampul_novel_Bintang.jpeg','Tere liye',2,2,2,9,0,9,'2023-01-20 16:08:06','2023-02-03 17:06:18'),
-(2,'Matahari','matahari','buku/Sampul_novel_Matahari.jpeg','Tere liye',3,2,3,8,1,9,'2023-01-20 16:08:06','2023-08-26 17:48:34'),
-(3,'Tentang kamu','tentang-kamu','buku/Tentang_Kamu_sampul.jpeg','Tere liye',2,2,4,11,0,11,'2023-01-20 16:08:06','2023-02-05 10:36:11'),
+(1,'Bintang','bintang','buku/Sampul_novel_Bintang.jpeg','Tere liye',2,2,2,9,0,9,'2023-01-20 16:08:06','2024-02-04 04:12:07'),
+(2,'Matahari','matahari','buku/Sampul_novel_Matahari.jpeg','Tere liye',3,2,3,9,0,9,'2023-01-20 16:08:06','2024-01-24 12:10:37'),
+(3,'Tentang kamu','tentang-kamu','buku/Tentang_Kamu_sampul.jpeg','Tere liye',2,2,4,11,0,11,'2023-01-20 16:08:06','2024-02-04 04:11:55'),
 (4,'Gusdur','gusdur','buku/gusdur.jpg','Greg borton',2,3,7,11,0,11,'2023-01-20 16:08:06','2023-06-11 10:25:58'),
-(5,'Habibie','habibie','buku/habibie.jpg','Raden toto sugiharto',2,3,8,10,0,10,'2023-01-20 16:08:06','2023-06-11 10:25:58'),
-(6,'Naruto volume 58','naruto-volume-58','buku/naruto-58.jpg','Masashi kishimoto',3,6,12,9,1,10,'2023-01-20 16:08:06','2023-06-11 11:26:08'),
-(7,'Naruto volume 71','naruto-volume-71','buku/naruto-71.jpg','Masashi kishimoto',3,6,13,6,1,7,'2023-01-20 16:08:06','2023-06-11 11:26:08'),
+(5,'Habibie','habibie','buku/habibie.jpg','Raden toto sugiharto',2,3,8,10,0,10,'2023-01-20 16:08:06','2024-02-04 04:24:17'),
+(6,'Naruto volume 58','naruto-volume-58','buku/naruto-58.jpg','Masashi kishimoto',3,6,12,9,1,10,'2023-01-20 16:08:06','2024-02-04 04:29:59'),
+(7,'Naruto volume 71','naruto-volume-71','buku/naruto-71.jpg','Masashi kishimoto',3,6,13,7,0,7,'2023-01-20 16:08:06','2024-01-24 12:12:20'),
 (8,'Keselamatan di rumah dan di perjalanan','keselamatan-di-rumah-dan-di-perjalanan','buku/QiszOlutp3AVH2SC6QqAtf5FJeguDolSjCOhmR6w.jpg','Kemendikbud',1,1,1,3,0,3,'2023-01-26 14:12:26','2023-08-26 17:36:50'),
 (9,'Testbuku','testbuku','buku/GkBo4SGVDCFXlxmt5ns2wNk0heVjKVe71q2zHsaF.jpg','Test2',2,2,2,0,0,1,'2023-08-26 17:30:34','2023-08-26 17:31:46');
+
+/*Table structure for table `categories` */
+
+DROP TABLE IF EXISTS `categories`;
+
+CREATE TABLE `categories` (
+  `id` int unsigned NOT NULL,
+  `name` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+/*Data for the table `categories` */
+
+/*Table structure for table `customers` */
+
+DROP TABLE IF EXISTS `customers`;
+
+CREATE TABLE `customers` (
+  `id` int unsigned NOT NULL,
+  `nama` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `alamat` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `email` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `telepon` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+/*Data for the table `customers` */
 
 /*Table structure for table `detail_peminjaman` */
 
 DROP TABLE IF EXISTS `detail_peminjaman`;
 
 CREATE TABLE `detail_peminjaman` (
-  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
-  `peminjaman_id` bigint(20) unsigned NOT NULL,
-  `buku_id` bigint(20) unsigned NOT NULL,
+  `id` bigint unsigned NOT NULL AUTO_INCREMENT,
+  `peminjaman_id` bigint unsigned NOT NULL,
+  `buku_id` bigint unsigned NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=566 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=574 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 /*Data for the table `detail_peminjaman` */
 
 insert  into `detail_peminjaman`(`id`,`peminjaman_id`,`buku_id`,`created_at`,`updated_at`) values 
-(510,506,2,'2023-01-20 16:34:15','2023-01-20 16:34:15'),
-(511,506,3,'2023-01-20 16:34:20','2023-01-20 16:34:20'),
-(513,507,5,'2023-01-20 17:29:58','2023-01-20 17:29:58'),
-(514,507,4,'2023-01-20 17:30:04','2023-01-20 17:30:04'),
-(515,507,3,'2023-01-20 17:30:10','2023-01-20 17:30:10'),
-(531,511,1,'2023-01-29 13:05:12','2023-01-29 13:05:12'),
-(532,511,2,'2023-01-29 13:05:16','2023-01-29 13:05:16'),
-(533,511,8,'2023-01-29 13:27:22','2023-01-29 13:27:22'),
-(534,512,2,'2023-01-30 14:36:12','2023-01-30 14:36:12'),
-(535,512,5,'2023-01-30 14:36:18','2023-01-30 14:36:18'),
-(536,512,4,'2023-01-30 14:36:22','2023-01-30 14:36:22'),
-(537,513,3,'2023-01-30 14:40:08','2023-01-30 14:40:08'),
-(538,513,1,'2023-01-30 14:40:17','2023-01-30 14:40:17'),
-(539,513,2,'2023-01-30 14:40:22','2023-01-30 14:40:22'),
-(540,514,1,'2023-02-03 13:35:40','2023-02-03 13:35:40'),
-(541,514,2,'2023-02-03 13:35:47','2023-02-03 13:35:47'),
-(542,514,3,'2023-02-03 13:35:55','2023-02-03 13:35:55'),
-(543,515,3,'2023-02-03 14:20:21','2023-02-03 14:20:21'),
-(545,515,5,'2023-02-03 14:20:34','2023-02-03 14:20:34'),
-(546,515,4,'2023-02-03 15:19:49','2023-02-03 15:19:49'),
-(547,516,8,'2023-02-03 15:33:45','2023-02-03 15:33:45'),
-(548,516,1,'2023-02-03 15:33:53','2023-02-03 15:33:53'),
-(550,518,5,'2023-02-03 17:06:45','2023-02-03 17:06:45'),
-(551,518,3,'2023-02-04 14:11:29','2023-02-04 14:11:29'),
-(555,519,3,'2023-02-04 14:28:40','2023-02-04 14:28:40'),
-(556,519,7,'2023-02-04 14:28:45','2023-02-04 14:28:45'),
-(557,520,5,'2023-02-05 10:36:43','2023-02-05 10:36:43'),
-(558,520,6,'2023-02-05 10:36:49','2023-02-05 10:36:49'),
-(559,521,8,'2023-06-11 09:12:06','2023-06-11 09:12:06'),
-(560,521,6,'2023-06-11 09:12:22','2023-06-11 09:12:22'),
-(561,522,6,'2023-06-11 09:33:40','2023-06-11 09:33:40'),
-(562,522,7,'2023-06-11 09:33:46','2023-06-11 09:33:46'),
-(563,523,8,'2023-06-11 12:04:01','2023-06-11 12:04:01'),
-(565,525,2,'2023-08-26 17:46:43','2023-08-26 17:46:43');
+(571,531,5,'2024-02-04 04:19:09','2024-02-04 04:19:09'),
+(572,532,3,'2024-02-04 04:23:28','2024-02-04 04:23:28'),
+(573,533,6,'2024-02-04 04:29:55','2024-02-04 04:29:55');
 
 /*Table structure for table `failed_jobs` */
 
 DROP TABLE IF EXISTS `failed_jobs`;
 
 CREATE TABLE `failed_jobs` (
-  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
-  `uuid` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `connection` text COLLATE utf8mb4_unicode_ci NOT NULL,
-  `queue` text COLLATE utf8mb4_unicode_ci NOT NULL,
-  `payload` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
-  `exception` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
+  `id` bigint unsigned NOT NULL AUTO_INCREMENT,
+  `uuid` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `connection` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `queue` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `payload` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `exception` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `failed_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`),
   UNIQUE KEY `failed_jobs_uuid_unique` (`uuid`)
@@ -124,9 +122,9 @@ CREATE TABLE `failed_jobs` (
 DROP TABLE IF EXISTS `kategori`;
 
 CREATE TABLE `kategori` (
-  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
-  `nama` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `slug` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `id` bigint unsigned NOT NULL AUTO_INCREMENT,
+  `nama` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `slug` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
@@ -147,9 +145,9 @@ insert  into `kategori`(`id`,`nama`,`slug`,`created_at`,`updated_at`) values
 DROP TABLE IF EXISTS `migrations`;
 
 CREATE TABLE `migrations` (
-  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `migration` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `batch` int(11) NOT NULL,
+  `id` int unsigned NOT NULL AUTO_INCREMENT,
+  `migration` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `batch` int NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
@@ -172,9 +170,9 @@ insert  into `migrations`(`id`,`migration`,`batch`) values
 DROP TABLE IF EXISTS `model_has_permissions`;
 
 CREATE TABLE `model_has_permissions` (
-  `permission_id` bigint(20) unsigned NOT NULL,
-  `model_type` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `model_id` bigint(20) unsigned NOT NULL,
+  `permission_id` bigint unsigned NOT NULL,
+  `model_type` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `model_id` bigint unsigned NOT NULL,
   PRIMARY KEY (`permission_id`,`model_id`,`model_type`),
   KEY `model_has_permissions_model_id_model_type_index` (`model_id`,`model_type`),
   CONSTRAINT `model_has_permissions_permission_id_foreign` FOREIGN KEY (`permission_id`) REFERENCES `permissions` (`id`) ON DELETE CASCADE
@@ -187,9 +185,9 @@ CREATE TABLE `model_has_permissions` (
 DROP TABLE IF EXISTS `model_has_roles`;
 
 CREATE TABLE `model_has_roles` (
-  `role_id` bigint(20) unsigned NOT NULL,
-  `model_type` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `model_id` bigint(20) unsigned NOT NULL,
+  `role_id` bigint unsigned NOT NULL,
+  `model_type` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `model_id` bigint unsigned NOT NULL,
   PRIMARY KEY (`role_id`,`model_id`,`model_type`),
   KEY `model_has_roles_model_id_model_type_index` (`model_id`,`model_type`),
   CONSTRAINT `model_has_roles_role_id_foreign` FOREIGN KEY (`role_id`) REFERENCES `roles` (`id`) ON DELETE CASCADE
@@ -714,8 +712,8 @@ insert  into `model_has_roles`(`role_id`,`model_type`,`model_id`) values
 DROP TABLE IF EXISTS `password_resets`;
 
 CREATE TABLE `password_resets` (
-  `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `token` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `email` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `token` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   KEY `password_resets_email_index` (`email`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -727,50 +725,39 @@ CREATE TABLE `password_resets` (
 DROP TABLE IF EXISTS `peminjaman`;
 
 CREATE TABLE `peminjaman` (
-  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
-  `kode_pinjam` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `peminjam_id` bigint(20) unsigned NOT NULL,
-  `petugas_pinjam` bigint(20) unsigned DEFAULT NULL,
-  `petugas_kembali` bigint(20) unsigned DEFAULT NULL,
-  `status` int(11) NOT NULL,
-  `denda` int(11) DEFAULT '0',
-  `denda_hilang` int(11) DEFAULT '0',
+  `id` bigint unsigned NOT NULL AUTO_INCREMENT,
+  `kode_pinjam` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `peminjam_nama` varchar(200) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `peminjam_id` bigint unsigned DEFAULT NULL,
+  `petugas_pinjam` bigint unsigned DEFAULT NULL,
+  `petugas_kembali` bigint unsigned DEFAULT NULL,
+  `status` int NOT NULL,
+  `denda` int DEFAULT '0',
+  `denda_hilang` int DEFAULT '0',
   `tanggal_pinjam` date DEFAULT NULL,
   `tanggal_kembali` date DEFAULT NULL,
   `tanggal_pengembalian` date DEFAULT NULL,
-  `hilang` int(1) DEFAULT '0',
+  `hilang` int DEFAULT '0',
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=526 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=534 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 /*Data for the table `peminjaman` */
 
-insert  into `peminjaman`(`id`,`kode_pinjam`,`peminjam_id`,`petugas_pinjam`,`petugas_kembali`,`status`,`denda`,`denda_hilang`,`tanggal_pinjam`,`tanggal_kembali`,`tanggal_pengembalian`,`hilang`,`created_at`,`updated_at`) values 
-(506,'192003192',4,NULL,1,3,500,0,'2023-01-03','2023-01-20','2023-01-21',0,'2023-01-20 16:34:15','2023-01-21 23:59:10'),
-(507,'437719288',5,NULL,1,3,0,0,'2023-01-21','2023-01-31','2023-01-24',0,'2023-01-20 17:29:58','2023-01-24 13:36:12'),
-(511,'979890107',3,NULL,2,3,0,0,'2023-01-29','2023-02-08','2023-01-30',0,'2023-01-29 13:05:07','2023-01-30 14:35:51'),
-(512,'119293163',3,NULL,1,3,61000,0,'2023-01-30','2023-02-09','2023-06-11',0,'2023-01-30 14:36:12','2023-06-11 10:25:58'),
-(513,'980778701',5,NULL,2,3,0,0,'2023-01-30','2023-02-09','2023-01-30',0,'2023-01-30 14:40:08','2023-01-30 14:49:57'),
-(514,'912321897',5,NULL,2,3,0,0,'2023-02-03','2023-02-13','2023-02-03',0,'2023-02-03 13:35:40','2023-02-03 13:37:59'),
-(515,'607214580',5,NULL,2,3,0,0,'2023-02-03','2023-02-13','2023-02-03',0,'2023-02-03 14:20:21','2023-02-03 15:32:25'),
-(516,'509242602',5,NULL,2,3,0,0,'2023-02-03','2023-02-13','2023-02-03',0,'2023-02-03 15:33:44','2023-02-03 17:06:18'),
-(518,'563538755',5,NULL,2,3,0,0,'2023-02-04','2023-02-14','2023-02-04',0,'2023-02-03 17:06:45','2023-02-04 14:28:25'),
-(519,'991421484',5,NULL,1,3,0,0,'2023-02-04','2023-02-14','2023-02-05',0,'2023-02-04 14:28:40','2023-02-05 10:36:11'),
-(520,'742849997',5,NULL,2,3,1000,0,'2023-02-02','2023-02-03','2023-02-05',0,'2023-02-05 10:36:43','2023-02-05 10:42:27'),
-(521,'527680306',507,NULL,1,3,30000,30000,'2023-06-11','2023-06-21','2023-08-20',1,'2023-06-11 09:12:06','2023-08-20 14:41:48'),
-(522,'609858296',5,1,1,2,0,0,'2023-06-14','2023-06-24','2023-06-11',0,'2023-06-11 09:33:40','2023-06-11 13:11:14'),
-(523,'771605985',512,1,1,3,33000,0,'2023-06-11','2023-06-21','2023-08-26',0,'2023-06-11 12:04:01','2023-08-26 17:36:50'),
-(525,'525118507',3,2,NULL,2,0,0,'2023-08-27','2023-09-06',NULL,0,'2023-08-26 17:46:43','2023-08-26 17:48:34');
+insert  into `peminjaman`(`id`,`kode_pinjam`,`peminjam_nama`,`peminjam_id`,`petugas_pinjam`,`petugas_kembali`,`status`,`denda`,`denda_hilang`,`tanggal_pinjam`,`tanggal_kembali`,`tanggal_pengembalian`,`hilang`,`created_at`,`updated_at`) values 
+(531,'643649066','habul',NULL,2,2,3,0,30000,'2024-02-04','2024-02-14','2024-02-04',0,'2024-02-04 04:19:09','2024-02-04 04:24:17'),
+(532,'970183111','andre',NULL,2,NULL,1,0,0,'2024-02-05','2024-02-15',NULL,0,'2024-02-04 04:23:28','2024-02-04 04:23:28'),
+(533,'179945652','rivan',NULL,2,NULL,2,0,0,'2024-02-06','2024-02-16',NULL,0,'2024-02-04 04:29:55','2024-02-04 04:29:59');
 
 /*Table structure for table `penerbit` */
 
 DROP TABLE IF EXISTS `penerbit`;
 
 CREATE TABLE `penerbit` (
-  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
-  `nama` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `slug` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `id` bigint unsigned NOT NULL AUTO_INCREMENT,
+  `nama` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `slug` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
@@ -788,9 +775,9 @@ insert  into `penerbit`(`id`,`nama`,`slug`,`created_at`,`updated_at`) values
 DROP TABLE IF EXISTS `permissions`;
 
 CREATE TABLE `permissions` (
-  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
-  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `guard_name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `id` bigint unsigned NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `guard_name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`),
@@ -804,11 +791,11 @@ CREATE TABLE `permissions` (
 DROP TABLE IF EXISTS `rak`;
 
 CREATE TABLE `rak` (
-  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
-  `rak` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `baris` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `slug` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `kategori_id` bigint(20) unsigned NOT NULL,
+  `id` bigint unsigned NOT NULL AUTO_INCREMENT,
+  `rak` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `baris` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `slug` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `kategori_id` bigint unsigned NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
@@ -839,8 +826,8 @@ insert  into `rak`(`id`,`rak`,`baris`,`slug`,`kategori_id`,`created_at`,`updated
 DROP TABLE IF EXISTS `role_has_permissions`;
 
 CREATE TABLE `role_has_permissions` (
-  `permission_id` bigint(20) unsigned NOT NULL,
-  `role_id` bigint(20) unsigned NOT NULL,
+  `permission_id` bigint unsigned NOT NULL,
+  `role_id` bigint unsigned NOT NULL,
   PRIMARY KEY (`permission_id`,`role_id`),
   KEY `role_has_permissions_role_id_foreign` (`role_id`),
   CONSTRAINT `role_has_permissions_permission_id_foreign` FOREIGN KEY (`permission_id`) REFERENCES `permissions` (`id`) ON DELETE CASCADE,
@@ -854,9 +841,9 @@ CREATE TABLE `role_has_permissions` (
 DROP TABLE IF EXISTS `roles`;
 
 CREATE TABLE `roles` (
-  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
-  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `guard_name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `id` bigint unsigned NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `guard_name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`),
@@ -875,13 +862,13 @@ insert  into `roles`(`id`,`name`,`guard_name`,`created_at`,`updated_at`) values
 DROP TABLE IF EXISTS `users`;
 
 CREATE TABLE `users` (
-  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
-  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `kelas` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `id` bigint unsigned NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `kelas` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `email` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `email_verified_at` timestamp NULL DEFAULT NULL,
-  `password` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `remember_token` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `password` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `remember_token` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`),
@@ -892,15 +879,7 @@ CREATE TABLE `users` (
 
 insert  into `users`(`id`,`name`,`kelas`,`email`,`email_verified_at`,`password`,`remember_token`,`created_at`,`updated_at`) values 
 (1,'Admin','','admin@gmail.com','2023-01-20 16:08:05','$2y$10$rQxvywTaFOkwcyg8eDCnAerj0UgZ/lJmWYvy5O10GZJBJZqaidY1e',NULL,'2023-01-20 16:08:05','2023-01-20 16:08:05'),
-(2,'Petugas','','petugas@gmail.com','2023-01-20 16:08:05','$2y$10$uqG0CdWbFAVnD1kjHF1q4.ejrBmPACQ9fYIhlZPzMTfZjvr9j/pHi',NULL,'2023-01-20 16:08:05','2023-01-20 16:08:05'),
-(3,'Peminjam','5A','peminjam@gmail.com','2023-01-20 16:08:05','$2y$10$3HUTrp6zIP9cgEf2tDsBT.vKWdmaibcgGsj5Gz.1XLlpc6554FGh6',NULL,'2023-01-20 16:08:05','2023-01-20 16:08:05'),
-(4,'Musyahya','5C','musyahya@gmail.com','2023-01-20 16:08:05','$2y$10$vmiL3nXBCrTOSo3Fo9hcDu4JsGco904.EaS49ScoZ7B4zHW8/SnVu',NULL,'2023-01-20 16:08:05','2023-01-20 16:08:05'),
-(5,'Yahya','5B','yahya@gmail.com','2023-01-20 16:08:05','$2y$10$mv0OmqzZuXq2qCF8Y1hZX.GT7dzsUlcqxcTuJKb2igVCIOi5MY2G6',NULL,'2023-01-20 16:08:05','2023-01-20 16:08:05'),
-(506,'Zahira','6A','zahira@gmail.com',NULL,'$2y$10$muLPeDAZvTwEt.mn6VUI.Owf8S084dtbQ/l0X4TBZUBGganHytYM.',NULL,'2023-01-22 15:41:01','2023-01-22 15:41:01'),
-(507,'Budi','3B','budi@gmail.com',NULL,'$2y$10$HftEhU2wIwiK96ZuL1HstOXLREtVzU7LuZfYQvsPVIb74iVQ4q8Iy',NULL,'2023-01-24 14:08:15','2023-01-24 14:08:15'),
-(511,'Budp','1B','budo@gmail.com',NULL,'$2y$10$wtWYIrY7nPbEAyQ9m/MgFuI/7xzzE5U7mDJgvC0TkfpLYqrpmUt3a',NULL,'2023-01-26 14:01:18','2023-01-26 14:01:18'),
-(512,'Yoyo','1B','yoyo@gmail.com',NULL,'$2y$10$O0ynqJklRAu.iATNWzn0IOGM8a2SpIGjKa7CDv.jZZIXeGqr6zpIa',NULL,'2023-01-26 14:04:07','2023-01-26 14:04:07'),
-(513,'Test3','1B','test123@gmail.com',NULL,'$2y$10$JvHV.erh0A8FgfU2yUsiQ.y6VCH27T2pSOcfz91qlEXeWEyPjOkHu',NULL,'2023-02-13 04:10:14','2023-02-13 04:10:14');
+(2,'Petugas','','petugas@gmail.com','2023-01-20 16:08:05','$2y$10$uqG0CdWbFAVnD1kjHF1q4.ejrBmPACQ9fYIhlZPzMTfZjvr9j/pHi',NULL,'2023-01-20 16:08:05','2023-01-20 16:08:05');
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
 /*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
