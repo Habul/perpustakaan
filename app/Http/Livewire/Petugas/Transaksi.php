@@ -4,6 +4,7 @@ namespace App\Http\Livewire\Petugas;
 
 use App\Models\Peminjaman;
 use App\Models\Buku as ModelsBuku;
+use App\Models\Datasiswa as ModelSiswa;
 use App\Models\DetailPeminjaman;
 use Carbon\Carbon;
 use Livewire\Component;
@@ -14,7 +15,7 @@ class Transaksi extends Component
     use WithPagination;
     protected $paginationTheme = 'bootstrap';
 
-    public $belum_dipinjam, $sedang_dipinjam, $selesai_dipinjam, $search, $create, $book, $peminjam_nama, $tgl_pinjam, $books;
+    public $belum_dipinjam, $sedang_dipinjam, $selesai_dipinjam, $search, $create, $book, $peminjam_nama, $tgl_pinjam, $books, $siswa;
     public $kode_pinjam, $name, $kelas, $buku, $tanggal_pinjam, $tanggal_kembali, $tanggal_pengembalian, $pinjam_id, $edit, $hilang, $submit, $denda_hilang;
 
     protected $rules = [
@@ -23,11 +24,23 @@ class Transaksi extends Component
         'tgl_pinjam'    => 'required',
     ];
 
+    public function ceksiswa()
+    {
+        $cek = ModelSiswa::where('nama', $this->peminjam_nama)->first();
+
+        if ($cek != null) {
+            $this->kelas = $cek->kelas;
+        } else {
+            $this->kelas = null;
+        }
+    }
+
     public function create()
     {
         $this->format();
         $this->create = true;
         $this->books = ModelsBuku::all();
+        $this->siswa = ModelSiswa::all();
     }
 
     public function store()
@@ -188,6 +201,7 @@ class Transaksi extends Component
         unset($this->peminjam_nama);
         unset($this->tgl_pinjam);
         unset($this->book);
+        unset($this->kelas);
         unset($this->edit);
         unset($this->hilang);
         unset($this->submit);

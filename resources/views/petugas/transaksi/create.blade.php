@@ -11,10 +11,20 @@
                 <div class="modal-body">
                     <div class="form-group">
                         <label for="peminjam_nama">Nama Peminjam</label>
-                        <input wire:model="peminjam_nama" type="text" class="form-control" id="peminjam_nama">
+                        <select wire:model="peminjam_nama" class="form-control" id="peminjam_nama"
+                            wire:click="ceksiswa">
+                            <option selected value="">Pilih Siswa</option>
+                            @foreach ($siswa as $item)
+                                <option value="{{ $item->nama }}">{{ $item->nama }}</option>
+                            @endforeach
+                        </select>
                         @error('peminjam_nama')
                             <small class="text-danger">{{ $message }}</small>
                         @enderror
+                    </div>
+                    <div class="form-group">
+                        <label for="kelas">Kelas</label>
+                        <input wire:model="kelas" type="text" class="form-control" id="kelas" disabled>
                     </div>
                     <div class="form-group">
                         <label for="book">Buku</label>

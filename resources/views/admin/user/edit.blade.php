@@ -33,7 +33,7 @@
                      <div class="form-group">
                          <label for="password">Ubah Password</label>
                          <input wire:model="password" type="password" class="form-control" id="password">
-                         <small> jika tidak ingin mengubah password</small>
+                         <small>kosongkan jika tidak ingin mengubah password</small>
                          @error('password')
                              <small class="text-danger">{{ $message }}</small>
                          @enderror

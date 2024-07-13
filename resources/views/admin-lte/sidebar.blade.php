@@ -85,6 +85,13 @@
                  </li>
 
                  <li class="nav-item">
+                     <a href="/datasiswa" class="nav-link @yield('active-datasiswa')">
+                         <i class="nav-icon fas fa-user-friends"></i>
+                         <p>Data Siswa</p>
+                     </a>
+                 </li>
+
+                 <li class="nav-item">
                      <a href="/transaksi" class="nav-link @yield('active-transaksi')">
                          <i class="nav-icon fas fa-hands"></i>
                          <p>Transaksi</p>

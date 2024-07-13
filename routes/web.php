@@ -8,6 +8,7 @@ use App\Http\Controllers\Peminjam\KeranjangController;
 use App\Http\Controllers\Petugas\BukuController;
 use App\Http\Controllers\Petugas\ChartController;
 use App\Http\Controllers\Petugas\DashboardController;
+use App\Http\Controllers\Petugas\DatasiswaController;
 use App\Http\Controllers\Petugas\KategoriController;
 use App\Http\Controllers\Petugas\PenerbitController;
 use App\Http\Controllers\Petugas\RakController;
@@ -41,6 +42,7 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/chart', ChartController::class);
         Route::get('/transaksi/print/{id}', [TransaksiController::class, 'print']);
         Route::get('/transaksi/print_denda/{id}', [TransaksiController::class, 'print_denda']);
+        Route::get('/datasiswa', DatasiswaController::class);
         Route::get('/laporan', LaporanController::class);
         Route::get('/laporandenda', LapDendaController::class);
         Route::get('/laporanpinjam', LapPinjamController::class);
